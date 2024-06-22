@@ -30,8 +30,8 @@ const AddPhotosSection = () => {
         <Button
           variant="contained"
           color="primary"
-          href="https://image.bharatmatrimony.com/photo/photoupload.php?gaact=addphotonow&gasrc=editprofile"
-          target="_blank"
+          href=""
+         
           sx={{
             backgroundColor: '#007bff',
             '&:hover': {

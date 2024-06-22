@@ -38,7 +38,7 @@ const EditProfile = () => {
           }}
         >
           <Box sx={{ width: '150px', height: '150px' }}>
-            <a href="https://image.bharatmatrimony.com/photo/photoupload.php?gaact=ADDPH&gasrc=EDPR">
+            <a href="">
               <img
                 src="https://th.bing.com/th/id/OIP.SAcV4rjQCseubnk32USHigHaHx?w=131&h=180&c=7&r=0&o=5&pid=1.7"
                 width="150"
@@ -48,7 +48,7 @@ const EditProfile = () => {
             </a>
           </Box>
           <Box sx={{ textAlign: 'center', lineHeight: '25px', backgroundColor: '#f1f1f1', paddingTop: '5px' }}>
-            <a href="https://image.bharatmatrimony.com/photo/photoupload.php?gaact=ADDP&gasrc=EDPR">Add / Edit Photos</a>
+            <a href="">Add / Edit Photos</a>
           </Box>
         </Box>
 

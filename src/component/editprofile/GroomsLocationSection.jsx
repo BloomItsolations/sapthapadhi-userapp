@@ -24,9 +24,8 @@ const GroomsLocationSection = () => {
   };
 
   const handleSave = () => {
-    // Logic to save the updated form data
     console.log('Form data saved:', formData);
-    setIsEditing(false); // Close edit mode after saving
+    setIsEditing(false);
   };
 
   return (

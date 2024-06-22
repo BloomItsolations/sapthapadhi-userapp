@@ -14,7 +14,6 @@ const AboutMyFamilySection = () => {
   };
 
   const handleSave = () => {
-    // Logic to save the updated About My Family data
     console.log('About My Family saved:', aboutMyFamily);
     setIsEditing(false); // Close edit mode after saving
   };

@@ -6,13 +6,11 @@ const PhotoUploadPopup = () => {
 
   const handleAddPhoto = () => {
     setIsOpen(true);
-    // Implement logic for adding a photo here
-    // For example, open a file upload dialog or trigger some action.
+   
   };
 
   const handleClose = () => {
     setIsOpen(false);
-    // Implement any cleanup or close logic here
   };
 
   return (

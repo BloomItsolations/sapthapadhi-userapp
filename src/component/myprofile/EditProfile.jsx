@@ -25,7 +25,7 @@ const EditProfile = () => {
           }}
         >
           <Box sx={{ width: '150px', height: '150px' }}>
-            <a href="https://image.bharatmatrimony.com/photo/photoupload.php?gaact=ADDPH&gasrc=EDPR">
+            <a href="">
               <img
                 src="https://imgs.bharatmatrimony.com/bmimgs/add-photo-Ntxt-m-150-avatar.jpg"
                 width="150"
@@ -35,7 +35,7 @@ const EditProfile = () => {
             </a>
           </Box>
           <Box sx={{ textAlign: 'center', lineHeight: '25px', backgroundColor: '#f1f1f1', paddingTop: '5px' }}>
-            <a href="https://image.bharatmatrimony.com/photo/photoupload.php?gaact=ADDP&gasrc=EDPR">Add / Edit Photos</a>
+            <a href="">Add / Edit Photos</a>
           </Box>
         </Box>
 
@@ -70,7 +70,7 @@ const EditProfile = () => {
                 Verified
               </span>
               &nbsp;&nbsp;
-              <Button href="myprofile.php?rand=483995192&lp=editprofile&gaact=EDMN&gasrc=EDPR" style={{ textDecoration: 'none' }}>
+              <Button href="" style={{ textDecoration: 'none' }}>
                 Edit Mobile No
               </Button>
             </Typography>
@@ -84,7 +84,7 @@ const EditProfile = () => {
           </Typography>
           <Button
             variant="outlined"
-            href="https://profile.bharatmatrimony.com/profiledetail/gobuild.php?ID=H13482182&ENCID=YkcLo9BfFasRleFl2JH8bQ%3D%3D&build_module_name=user_viewprofile"
+            href=""
             target="_blank"
             sx={{ display: 'inline-block', padding: '7px 10px 7px 40px', borderRadius: '5px', background: 'url(https://imgs.bharatmatrimony.com/bmimgs/edit-profile-preview-may15.gif) no-repeat 10px 8px', marginTop: '5px', textDecoration: 'none' }}
           >

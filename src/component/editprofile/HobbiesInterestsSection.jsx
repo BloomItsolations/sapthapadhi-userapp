@@ -14,9 +14,8 @@ const HobbiesInterestsSection = () => {
   };
 
   const handleSave = () => {
-    // Logic to save the updated Hobbies and Interests data
     console.log('Hobbies and Interests saved:', hobbiesInterests);
-    setIsEditing(false); // Close edit mode after saving
+    setIsEditing(false); 
   };
 
   return (
