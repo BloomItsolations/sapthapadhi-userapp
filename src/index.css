@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=New+Rocker&family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
+.bgimage{
+    background-image: url('C:\Users\cws\matrimony\public\images\Rectangle 69.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.bgimageprice{
+    background-image: url('C:\Users\cws\matrimony\public\images\Rectangle 265.jpg');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.profilebgimage{
+     background-image: url('C:\Users\cws\matrimony\public\images\beautiful-girl-with-autumn-leaves-photo 1.jpg');
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+}
+.sidebar-container{
+    overflow-y: scroll;
+
+}
+
+.sidebar-container::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-container::-webkit-scrollbar:hover{
+    width: 8px;
+}
+.sidebar-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2px; 
+  }
+
+.sidebar-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
+
+}
+
+.sidebar-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+    border-radius: 10px; 
+  }
