@@ -1,68 +1,122 @@
-
-import React, { useState, useRef, useEffect } from 'react';
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Button, Typography, List, ListItem, ListItemText } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { Link as ScrollLink, Element, scroller } from 'react-scroll';
+import { Element, scroller } from 'react-scroll';
 import EditDialog from './EditDialog';
+import axios from 'axios';
 
 const EditPreference = () => {
+    let userId=JSON.parse(localStorage.getItem('userdata'))?.userId;
+    console.log("userId",userId);
     const [open, setOpen] = useState(false);
     const [currentSection, setCurrentSection] = useState('');
     const [preferences, setPreferences] = useState({
+        userId: 1,
         basic: {
-            age: '18 - 23 years',
-            height: '4 Ft 6 In- 5 Ft 4 In/137 Cms- 163 Cms',
-            maritalStatus: 'Never Married',
-            motherTongue: 'Hindi',
-            physicalStatus: 'Normal',
-            eatingHabits: "Doesn't matter",
-            drinkingHabits: "Doesn't matter",
-            smokingHabits: "Doesn't matter",
+            Age: '',
+            height: '',
+            maritalStatus: '',
+            motherTongue: '',
+            physicalStatus: '',
+            eatingHabits: '',
+            drinkingHabits: '',
+            smokingHabits: '',
         },
         religious: {
-            religion: 'Hindu',
-            caste: 'Yadav,Gawali,Goala,Yadava Naidu,Sadgope,Naidu,Caste no bar',
-            subcaste: 'Any Subcaste',
-            dosh: "Doesn't matter",
-            star: 'Any',
+            religion: '',
+            caste: '',
+            subcaste: '',
+            dosh: '',
+            star: '',
         },
         professional: {
-            education: 'Any',
-            employedIn: 'Any',
-            occupation: 'Any',
-            annualIncome: 'Any',
+            education: '',
+            employedIn: '',
+            occupation: '',
+            annualIncome: '',
         },
         location: {
-            country: 'Any',
-            ancestralOrigin: 'Hindi-All',
+            country: '',
+            ancestralOrigin: '',
         },
         about: {
-            description: 'Not Specified',
+            description: '',
         },
     });
+    useEffect(() => {
+        const fetchPreferences = async () => {
+            
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_BaseURL}/app/preferences/${userId}`);
+                const preferencesData = response.data;
+
+                setPreferences({
+                    basic: {
+                        Age: preferencesData.Age,
+                        height: preferencesData.height,
+                        maritalStatus: preferencesData.maritalStatus,
+                        motherTongue: preferencesData.motherTongue,
+                        physicalStatus: preferencesData.physicalStatus,
+                        eatingHabits: preferencesData.eatingHabits,
+                        drinkingHabits: preferencesData.drinkingHabits,
+                        smokingHabits: preferencesData.smokingHabits,
+                    },
+                    religious: {
+                        religion: preferencesData.religion,
+                        caste: preferencesData.caste,
+                        subcaste: preferencesData.subcaste,
+                        dosh: preferencesData.dosh,
+                        star: preferencesData.star,
+                    },
+                    professional: {
+                        education: preferencesData.education,
+                        employedIn: preferencesData.employedIn,
+                        occupation: preferencesData.occupation,
+                        annualIncome: preferencesData.annualIncome,
+                    },
+                    location: {
+                        country: preferencesData.country,
+                        ancestralOrigin: preferencesData.ancestralOrigin,
+                    },
+                    about: {
+                        description: preferencesData.description,
+                    },
+                });
+            } catch (error) {
+                console.error('Error fetching preferences:', error);
+            }
+        };
+
+        fetchPreferences();
+    }, []);
 
     const handleClickOpen = (section) => {
         setCurrentSection(section);
-        console.log("section",preferences[currentSection]);
-            setOpen(true);
-        
+        setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
     };
 
-    const handleSave = (newValues) => {
-        setPreferences((prev) => ({
-            ...prev,
-            [currentSection]: {
-                ...prev[currentSection],
-                ...newValues,
-            },
-        }));
-        setOpen(false);
-        console.log("Api calling data",preferences);
-        // Call your API to save the new preferences here
+    const handleSave = async (newValues) => {
+        console.log("NewValues", newValues)
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_BaseURL}/app/add-preference`,{...newValues,userId:userId});
+            console.log('Preferences updated:', response.data);
+
+            setPreferences((prev) => ({
+                ...prev,
+                [currentSection]: {
+                    ...prev[currentSection],
+                    ...newValues,
+                },
+            }));
+
+            setOpen(false);
+        } catch (error) {
+            console.error('Error updating preferences:', error);
+        }
     };
 
     const scrollToSection = (section) => {
@@ -74,12 +128,12 @@ const EditPreference = () => {
     };
 
     return (
-        <Box display="flex" >
-            <Box width="20%" borderRight="1px solid #ddd" padding="16px" sx={{backgroundColor:'#49b882'}}>
-                <Typography variant="h6" sx={{color:'white'}}>PARTNER PREFERENCES</Typography>
+        <Box display="flex">
+            <Box width="20%" borderRight="1px solid #ddd" padding="16px" sx={{ backgroundColor: '#49b882' }}>
+                <Typography variant="h6" sx={{ color: 'white' }}>PARTNER PREFERENCES</Typography>
                 <List>
                     {['Basic', 'Religious', 'Professional', 'Location', 'About'].map((section) => (
-                        <ListItem button key={section} sx={{textAlign:'center',color:'white'}} onClick={() => scrollToSection(section.toLowerCase())}>
+                        <ListItem button key={section} sx={{ textAlign: 'center', color: 'white' }} onClick={() => scrollToSection(section.toLowerCase())}>
                             <ListItemText primary={section} />
                         </ListItem>
                     ))}
@@ -88,14 +142,17 @@ const EditPreference = () => {
             <Box width="80%" padding="16px">
                 <Element name="basic">
                     <Typography variant="h5">Basic Preferences</Typography>
-                    {Object?.entries(preferences?.basic)?.map(([key, value]) => (
-                        <PreferenceBox
+                    {Object?.entries(preferences?.basic)?.map(([key, value]) => {
+                        key !== 'userId' && <PreferenceBox
                             key={key}
                             field={key}
                             value={value}
                             onEdit={() => handleClickOpen('basic')}
                         />
-                    ))}
+
+
+                    }
+                    )}
                 </Element>
                 <Element name="religious">
                     <Typography variant="h5">Religious Preferences</Typography>
@@ -132,14 +189,16 @@ const EditPreference = () => {
                 </Element>
                 <Element name="about">
                     <Typography variant="h5">What we are looking for</Typography>
-                    {Object?.entries(preferences?.about)?.map(([key, value]) => (
-                        <PreferenceBox
+                    {Object?.entries(preferences?.about)?.map(([key, value]) => {
+                        key !== "userId" && <PreferenceBox
                             key={key}
                             field={key}
                             value={value}
                             onEdit={() => handleClickOpen('about')}
                         />
-                    ))}
+                    }
+
+                    )}
                 </Element>
             </Box>
             <EditDialog
@@ -163,6 +222,5 @@ const PreferenceBox = ({ field, value, onEdit }) => (
         </Button>
     </Box>
 );
-
 
 export default EditPreference;

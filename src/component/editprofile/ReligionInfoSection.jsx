@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, TextField, Grid } from '@mui/material';
+import axios from 'axios';
 
-const ReligionInfoSection = () => {
+const ReligionInfoSection = ({ user, userDetails, userId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    religion: 'Hindu',
-    casteSubCaste: 'Yadav (Caste No Bar) - Krishnauth',
+    religion: '',
+    caste: '',
     gothra: '',
-    starRaasi: '',
-    dosh: 'No',
+    star: '',
+    dosh: '',
     timeOfBirth: '',
-    placeOfBirth: ''
+    placeOfBirth: '',
   });
+
+  useEffect(() => {
+    if (userDetails) {
+      setFormData({
+        religion: userDetails.religion || '',
+        caste: userDetails.caste ,
+        gothra: userDetails.gothra || '',
+        star: userDetails.star ,
+        dosh: userDetails.haveDosh || 'No',
+        timeOfBirth: userDetails.timeOfBirth || '',
+        placeOfBirth: userDetails.placeOfBirth || ''
+      });
+    }
+  }, [userDetails]);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -25,10 +40,32 @@ const ReligionInfoSection = () => {
     }));
   };
 
-  const handleSave = () => {
-    // Logic to save the updated form data
-    console.log('Form data saved:', formData);
-    setIsEditing(false); // Close edit mode after saving
+  const handleSave = async () => {
+    try {
+      let formdata=new FormData();
+      formdata.append('userId',userId);
+      formdata.append('religion',formData.religion);
+      formdata.append('caste',userDetails.caste);
+      formdata.append('subCaste',userDetails.subCaste);
+      formdata.append('gothra',formData.gothra);
+      formdata.append('star',userDetails.star);
+      formdata.append('raasiMoonSign',userDetails.raasiMoonSign);
+      formdata.append('haveDosh',formData.dosh);
+      formdata.append('timeOfBirth',formData.timeOfBirth);
+      formdata.append('placeOfBirth',formData.placeOfBirth);
+      const response = await axios.post(
+        `${process.env.REACT_APP_BaseURL}/app/updateUserProfile`,
+        formdata,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+      setIsEditing(false); 
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
   };
 
   return (
@@ -39,7 +76,7 @@ const ReligionInfoSection = () => {
         backgroundColor: '#ffffff',
         padding: '20px',
         marginBottom: '20px',
-        marginTop:'10px'
+        marginTop: '10px'
       }}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
@@ -76,11 +113,11 @@ const ReligionInfoSection = () => {
                 sx={{ marginBottom: '10px' }}
               />
               <TextField
-                name="casteSubCaste"
-                label="Caste / Sub Caste"
+                name="caste"
+                label="Caste "
                 variant="outlined"
                 fullWidth
-                value={formData.casteSubCaste}
+                value={formData.caste}
                 onChange={handleChange}
                 sx={{ marginBottom: '10px' }}
               />
@@ -94,11 +131,11 @@ const ReligionInfoSection = () => {
                 sx={{ marginBottom: '10px' }}
               />
               <TextField
-                name="starRaasi"
-                label="Star / Raasi"
+                name="star"
+                label="Raasi"
                 variant="outlined"
                 fullWidth
-                value={formData.starRaasi}
+                value={formData.star}
                 onChange={handleChange}
                 sx={{ marginBottom: '10px' }}
               />
@@ -171,7 +208,7 @@ const ReligionInfoSection = () => {
               Religion: {formData.religion}
             </Typography>
             <Typography variant="body1" sx={{ border: '1px solid #ccc', padding: '8px' }}>
-              Caste / Sub Caste: {formData.casteSubCaste}
+              Caste : {formData.caste}
             </Typography>
             <Typography variant="body1" sx={{ border: '1px solid #ccc', padding: '8px' }}>
               Gothra(m): {formData.gothra}

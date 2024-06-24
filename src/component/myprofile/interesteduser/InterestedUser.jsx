@@ -9,7 +9,7 @@ const InterestedUser = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
+  let userId=JSON.parse(localStorage.getItem('userdata'))?.userId;
   const handleTabChange = (event, newIndex) => {
     setTabIndex(newIndex);
   };
@@ -17,9 +17,9 @@ const InterestedUser = () => {
   const renderTabContent = () => {
     switch (tabIndex) {
       case 0:
-        return <RequestUserPage/>
+        return <RequestUserPage userId={userId}/>
       case 1:
-        return <RequestAcceptedUserPage/>
+        return <RequestAcceptedUserPage userId={userId}/>
       default:
         return null;
     }

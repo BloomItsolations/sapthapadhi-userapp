@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, TextField, Grid } from '@mui/material';
+import axios from 'axios';
 
-const GroomsLocationSection = () => {
+const GroomsLocationSection = ({ userDetails, userId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     country: 'India',
@@ -10,6 +11,18 @@ const GroomsLocationSection = () => {
     citizenship: 'India',
     ancestralOrigin: 'Bihar'
   });
+
+  useEffect(() => {
+    if (userDetails) {
+      setFormData({
+        country: userDetails.countryLivingIn || '',
+        city: userDetails.residingCityDistrict || '',
+        state: userDetails.residingState || '',
+        citizenship: userDetails.citizenship || '',
+        ancestralOrigin: userDetails.ancestralOrigin || ''
+      });
+    }
+  }, [userDetails]);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -23,10 +36,32 @@ const GroomsLocationSection = () => {
     }));
   };
 
-  const handleSave = () => {
-    console.log('Form data saved:', formData);
-    setIsEditing(false);
+  const handleSave = async () => {
+    try {
+      const formdata = new FormData();
+      formdata.append('userId', userId);
+      formdata.append('countryLivingIn', formData.country);
+      formdata.append('residingCityDistrict', formData.city);
+      formdata.append('residingState', formData.state);
+      formdata.append('citizenship', formData.citizenship);
+      formdata.append('ancestralOrigin', formData.ancestralOrigin);
+  
+      const response = await axios.post(
+        `${process.env.REACT_APP_BaseURL}/app/updateUserProfile`,
+        formdata,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+  
+      setIsEditing(false); 
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
   };
+  
 
   return (
     <Box

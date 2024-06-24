@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -6,9 +6,22 @@ import useIsMobile from '../../hooks/useIsMobile';
 import Dashobard from './Dashobard';
 import EditIcon from '@mui/icons-material/Edit';
 import { LuClipboardEdit } from "react-icons/lu";
+import axios from 'axios';
 
 
 const MyProfileDashboard = () => {
+  let userId=JSON.parse(localStorage.getItem('userdata'))?.userId;
+  const [userData,setuserData]=useState(null) 
+  useEffect(()=>{
+       const fetchData=async ()=>{
+        let data=await axios.get(`${process.env.REACT_APP_BaseURL}/app/viewProfile/${userId}`)
+        data=await data.data;
+        setuserData(data);
+       }
+       fetchData();
+  },[])
+
+  console.log("userData",userData);
   const location=useLocation();
   let isChatBoxPage=location.pathname.includes('/myprofile/chatlist/')
   
@@ -19,7 +32,6 @@ const MyProfileDashboard = () => {
   const [isSidebarVisible, setSidebarVisible] = useState(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const navigate = useNavigate();
-  console.log("IsMobie",isMobile)
   const handleLinkClick = (to) => {
     setSelectedPage(to);
     if (isMobile) setSidebarVisible(false);
@@ -39,9 +51,9 @@ const MyProfileDashboard = () => {
           !isChatBoxPage && isSidebarVisible ? 'translate-x-0' : '-translate-x-full'
           } fixed md:static w-full md:w-[25%] h-[100vh] md:h-[85vh] lg:h-[85vh]  pb-8 bg-[#EDEDED] rounded-tr-[20px] rounded-bl-[20px] mt-2 z-10`}
           >
-        <img src="/images/Rectangle 312.jpg" className="w-[100px] mx-auto h-[100px] rounded-full" />
+        <img src={`https://sapthapadhi.bloomitsolutions.co.in/${userData?.userDetails.profilePhoto[0].path}`} className="w-[100px] mx-auto h-[100px] rounded-full" />
         <div className='flex flex-col items-center gap-1 mt-2'>
-        <h3 className='text-[20px] text-black font-sans font-bold'>Shubham Kumar</h3>
+        <h3 className='text-[20px] text-black font-sans font-bold'>{userData?.user?.firstName} {userData?.user?.lastName}</h3>
          <div className='flex gap-1'>
           <h3 className='text-[15px] font-sans font-bold'>Membership: </h3>
           <p>Free</p>
@@ -100,7 +112,7 @@ const MyProfileDashboard = () => {
             </IconButton>
           </div>
         )}
-        {!selectedPage && (location.pathname=="/myprofile") && isSidebarVisible && !isMobile ? <Dashobard /> : <Outlet />}
+        {!selectedPage && (location.pathname=="/myprofile") && isSidebarVisible && !isMobile ? <Dashobard userData={userData} /> : <Outlet />}
       </div>
     </div>
   );

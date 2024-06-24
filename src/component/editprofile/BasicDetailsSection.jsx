@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, Button, TextField, Grid } from '@mui/material';
+import axios from 'axios';
 
-const BasicDetailsSection = () => {
+const BasicDetailsSection = ({user,userDetails, userId}) => {
   const [isEditing, setIsEditing] = useState(false);
+
   const [formData, setFormData] = useState({
-    name: 'Shubham Kumar',
+    firstName: '',
+    lastName:'',
     bodyType: '',
-    age: '23 Years',
-    physicalStatus: 'Normal',
-    height: '5 Ft 4 In / 163 Cms',
+    age: '',
+    physicalStatus: '',
+    height: '',
     weight: '',
-    motherTongue: 'Hindi',
-    maritalStatus: 'Never Married',
+    motherTongue: '',
+    maritalStatus: '',
     eatingHabits: '',
     drinkingHabits: '',
     smokingHabits: ''
   });
-
+  useEffect(()=>{
+      setFormData({...formData,firstName:user.firstName,lastName:user.lastName,bodyType:userDetails.bodyType,age:userDetails.age,physicalStatus:userDetails.physicalStatus,height:userDetails.height,weight:userDetails.weight,motherTongue:userDetails.motherTongue,maritalStatus:userDetails.maritalStatus,eatingHabits:userDetails.eatingHabits,drinkingHabits:userDetails.drinkingHabits,smokingHabits:userDetails.smokingHabits})
+  },[userDetails])
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
   };
@@ -29,10 +34,36 @@ const BasicDetailsSection = () => {
     }));
   };
 
-  const handleSave = () => {
-    // Logic to save the updated form data
-    console.log('Form data saved:', formData);
-    setIsEditing(false); // Close edit mode after saving
+
+  const handleSave = async () => {
+    try {
+      // Create FormData object
+      const formdata = new FormData();
+      formdata.append('userId', userId);
+      formdata.append('firstName', formData.firstName);
+      formdata.append('lastName', formData.lastName);
+      formdata.append('bodyType', formData.bodyType);
+      formdata.append('age', formData.age);
+      formdata.append('physicalStatus', formData.physicalStatus);
+      formdata.append('height', formData.height);
+      formdata.append('weight', formData.weight);
+      formdata.append('motherTongue', formData.motherTongue);
+      formdata.append('maritalStatus', formData.maritalStatus);
+      formdata.append('eatingHabits', formData.eatingHabits);
+      formdata.append('drinkingHabits', formData.drinkingHabits);
+      formdata.append('smokingHabits', formData.smokingHabits);
+
+      await axios.post(`${process.env.REACT_APP_BaseURL}/app/updateUserProfile`, formdata, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      // Exit edit mode after successful submission
+      setIsEditing(false);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
   };
 
   return (
@@ -71,11 +102,20 @@ const BasicDetailsSection = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
-                name="name"
-                label="Name"
+                name="firstName"
+                label="firstName"
                 variant="outlined"
                 fullWidth
-                value={formData.name}
+                value={formData.firstName}
+                onChange={handleChange}
+                sx={{ marginBottom: '10px' }}
+              />
+              <TextField
+                name="lastName"
+                label="lastName"
+                variant="outlined"
+                fullWidth
+                value={formData.lastName}
                 onChange={handleChange}
                 sx={{ marginBottom: '10px' }}
               />
@@ -208,10 +248,13 @@ const BasicDetailsSection = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Typography variant="body1" sx={{ border: '1px solid #ccc', padding: '8px' }}>
-              Profile created for : My Self
+              Profile created for : {userDetails.profileCreatedFor ? userDetails.profileCreatedFor : "My Self"}
             </Typography>
             <Typography variant="body1" sx={{ border: '1px solid #ccc', padding: '8px' }}>
-              Name: {formData.name}
+              First Name: {formData.firstName}
+            </Typography>
+            <Typography variant="body1" sx={{ border: '1px solid #ccc', padding: '8px' }}>
+              Last Name: {formData.lastName}
             </Typography>
             <Typography variant="body1" sx={{ border: '1px solid #ccc', padding: '8px' }}>
               Age: {formData.age}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Grid, Container, Card, CardContent, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import LoadingSpinner from './LoadingSpinner';
 
 const useStyles = styled((theme) => ({
   container: {
@@ -15,6 +16,7 @@ const useStyles = styled((theme) => ({
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
     backgroundColor: '#ffffff',
+    marginBottom: theme.spacing(3),
   },
   header: {
     fontFamily: 'Yeseva One',
@@ -39,39 +41,49 @@ const useStyles = styled((theme) => ({
   },
 }));
 
-const ProfilePage = () => {
+const ProfilePage = ({ userDetails, loading }) => {
   const classes = useStyles();
 
+  if (loading) {
+    return <LoadingSpinner />; // Placeholder for loading indicator, implement LoadingSpinner component
+  }
+
+  if (!userDetails || !userDetails.user || !userDetails.userDetails) {
+    return <div>Error: User details not found</div>; // Handle case where userDetails is empty or API fetch fails
+  }
+
+  const { user, userDetails: userExtended } = userDetails;
+
   const personalInfo = {
-    Name: 'John Doe',
-    Age: '30',
-    'Family Names': 'Doe Family',
-    Height: '6 feet',
-    'Date Of Birth': 'January 1, 1990',
-    Degree: 'Bachelor of Science',
-    Weight: '70 kg',
-    Profession: 'Software Engineer',
-    Religion: 'Christianity',
-    Position: 'Senior Developer',
-    Cast: 'N/A',
-    'Sub Cast': 'N/A',
+    Name: `${user.firstName} ${user.lastName}`,
+    Age: userExtended.age,
+    'Family Names': userExtended.familyNames,
+    Height: userExtended.height,
+    'Date Of Birth': userExtended.dateOfBirth,
+    Degree: userExtended.highestEducation,
+    Weight: userExtended.weight,
+    Profession: userExtended.occupation,
+    Religion: userExtended.religion,
+    Position: userExtended.occupationInDetail,
+    Cast: userExtended.caste || 'N/A',
+    'Sub Cast': userExtended.subCaste || 'N/A',
   };
 
   const contactInfo = {
-    Phone: '+1 123-456-7890',
-    WhatsApp: '+1 123-456-7890',
-    Email: 'john.doe@example.com',
-    City: 'New York',
+    Phone: user.phone,
+    WhatsApp: user.phone, // Assuming WhatsApp uses the same phone number as regular phone
+    Email: user.email,
+    City: userExtended.residingCityDistrict,
   };
 
   const hobbies = {
-    Hobbies: 'Reading, Traveling, Hiking, Photography',
+    Hobbies: userExtended.hobbies || 'N/A',
   };
 
   return (
     <Container className={classes.container} sx={{ marginTop: '20px' }}>
       <Card className={classes.card}>
-        <Typography className={classes.header} sx={{ fontSize:{sm:'15px',md:'20px',lg:'25px'}, fontFamily: 'sans-serif', fontWeight: '600' }}>PERSONAL INFORMATION</Typography>
+        <Typography className={classes.header}>PERSONAL INFORMATION</Typography>
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
@@ -88,7 +100,7 @@ const ProfilePage = () => {
         </CardContent>
       </Card>
       <Card className={classes.card}>
-        <Typography className={classes.header} sx={{fontSize:{sm:'15px',md:'20px',lg:'25px'}, fontFamily: 'sans-serif', fontWeight: '600' }}>CONTACT INFORMATION</Typography>
+        <Typography className={classes.header}>CONTACT INFORMATION</Typography>
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
@@ -105,7 +117,7 @@ const ProfilePage = () => {
         </CardContent>
       </Card>
       <Card className={classes.card}>
-        <Typography className={classes.header} sx={{ fontSize:{sm:'15px',md:'20px',lg:'25px'}, fontFamily: 'sans-serif', fontWeight: '600' }}>HOBBIES</Typography>
+        <Typography className={classes.header}>HOBBIES</Typography>
         <Divider />
         <CardContent>
           <Grid container spacing={3}>

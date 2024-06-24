@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, TextField, Grid } from '@mui/material';
+import axios from 'axios';
 
-const FamilyDetailsSection = () => {
+const FamilyDetailsSection = ({ userDetails, userId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    familyValues: 'Traditional',
+    familyValues: '',
     fathersOccupation: 'Not Specified',
-    familyType: 'Nuclear',
+    familyType: '',
     mothersOccupation: 'Not Specified',
-    familyStatus: 'Upper middle class',
+    familyStatus: '',
     numberOfBrothers: 'Add No of Brothers',
     numberOfSisters: 'Add No of Sisters',
     familyLocation: 'Not Specified'
   });
+
+  useEffect(() => {
+    // Populate formData with userDetails on component mount
+    if (userDetails) {
+      setFormData({
+        familyValues: userDetails.FamilyValue || 'Traditional',
+        fathersOccupation: userDetails.FatherOccupation || 'Not Specified',
+        familyType: userDetails.FamilyType || 'Nuclear',
+        mothersOccupation: userDetails.MothersOccupation || 'Not Specified',
+        familyStatus: userDetails.FamilyStatus || 'Upper middle class',
+        numberOfBrothers: userDetails.NoofBrothers || 'Add No of Brothers',
+        numberOfSisters: userDetails.NoofSisters || 'Add No of Sisters',
+        familyLocation: userDetails.FamilyLocation || 'Not Specified'
+      });
+    }
+  }, [userDetails]);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -26,12 +43,35 @@ const FamilyDetailsSection = () => {
     }));
   };
 
-  const handleSave = () => {
-    // Logic to save the updated form data
-    console.log('Form data saved:', formData);
-    setIsEditing(false); // Close edit mode after saving
+  const handleSave = async () => {
+    try {
+      const formdata = new FormData();
+      formdata.append('userId', userId);
+      formdata.append('FamilyValue', formData.familyValues);
+      formdata.append('FatherOccupation', formData.fathersOccupation);
+      formdata.append('FamilyType', formData.familyType);
+      formdata.append('MothersOccupation', formData.mothersOccupation);
+      formdata.append('FamilyStatus', formData.familyStatus);
+      formdata.append('NoofBrothers', formData.numberOfBrothers);
+      formdata.append('NoofSisters', formData.numberOfSisters);
+      formdata.append('FamilyLocation', formData.familyLocation);
+  
+      const response = await axios.post(
+        `${process.env.REACT_APP_BaseURL}/app/updateUserProfile`,
+        formdata,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+  
+      setIsEditing(false); 
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
   };
-
+  
   return (
     <Box
       className="boxbtmline"
@@ -40,7 +80,7 @@ const FamilyDetailsSection = () => {
         backgroundColor: '#ffffff',
         padding: '20px',
         marginBottom: '20px',
-        marginTop:'15px'
+        marginTop: '15px'
       }}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
@@ -85,15 +125,7 @@ const FamilyDetailsSection = () => {
                 onChange={handleChange}
                 sx={{ marginBottom: '10px' }}
               />
-              <TextField
-                name="familyType"
-                label="Family Type"
-                variant="outlined"
-                fullWidth
-                value={formData.familyType}
-                onChange={handleChange}
-                sx={{ marginBottom: '10px' }}
-              />
+              
               <TextField
                 name="mothersOccupation"
                 label="Mother's Occupation"

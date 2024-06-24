@@ -1,5 +1,6 @@
-import React from 'react';
-import { Box, Avatar, Typography, Button, Card, CardContent, CardActions, Grid } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Box, Avatar, Typography, Button, Card, Grid } from '@mui/material';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
 
@@ -38,21 +39,15 @@ const NameAndButtonBox = styled(Box)(({ theme }) => ({
   flexDirection: { xs: 'column', sm: 'row' },
 }));
 
-const UserActions = styled(CardActions)({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-});
-
 const ScrollableBox = styled(Box)({
   width: '100%',
   maxWidth: { sm: '350px', md: '1100px' },
   margin: '0 auto',
   height: '74vh',
-  overflowY: 'hidden', 
+  overflowY: 'hidden',
   padding: { xs: 0, md: 2 },
   '&:hover': {
-    overflowY: 'auto', 
+    overflowY: 'auto',
   },
   '&::-webkit-scrollbar': {
     width: '7px',
@@ -68,69 +63,44 @@ const ScrollableBox = styled(Box)({
     backgroundColor: '#f1f1f1',
     borderRadius: '10px',
   },
-});
+})
 
-const RequestAcceptedUserPage = () => {
-  const users = [
-    {
-      id: 1,
-      name: 'Angelina',
-      avatar: '/images/Rectangle 369 (1).jpg',
-      city: 'New York',
-      age: 29,
-      working: 'Software Engineer',
-      height: '5\'9"',
-      requestTime: '10:30 AM, 18 August 2024',
-    },
-    {
-      id: 2,
-      name: 'John Doe',
-      avatar: '/images/Rectangle 369 (2).jpg',
-      city: 'Los Angeles',
-      age: 35,
-      working: 'Doctor',
-      height: '6\'0"',
-      requestTime: '11:00 AM, 20 August 2024',
-    },
-    {
-      id: 3,
-      name: 'Jane Smith',
-      avatar: '/images/Rectangle 369 (3).jpg',
-      city: 'Chicago',
-      age: 27,
-      working: 'Teacher',
-      height: '5\'6"',
-      requestTime: '02:00 PM, 22 August 2024',
-    },
-    // Add more users as needed
-  ];
+const RequestAcceptedUserPage = ({ userId }) => {
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    const fetchAcceptedRequests = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BaseURL}/app/accepted-requests/${userId}`);
+        setRequests(response.data);
+      } catch (error) {
+        console.error('Error fetching accepted requests:', error);
+      }
+    };
+
+    fetchAcceptedRequests();
+  }, [userId]);
 
   return (
     <ScrollableBox>
       <Grid container spacing={2}>
-        {users.map((user) => (
-          <Grid item xs={12} key={user.id}>
-            <UserCard sx={{ padding: '8px' }}>
-              <Avatar alt={user.name} variant="square" src={user.avatar} sx={{ width: { xs: '40px', sm: '40px', md: '240px' }, height: { xs: '40px', sm: '40px', md: '157px' }, borderRadius: '0px' }} />
+        {requests.map((request) => (
+          <Grid item xs={12} key={request.requestId}>
+            <UserCard>
+              <Avatar alt={request.fromUser.firstName} src={request.fromUser.profilePhoto ? `${process.env.REACT_APP_BaseURL}/${request.fromUser.profilePhoto[0].path}` : '/default-avatar.jpg'} />
               <UserInfo>
                 <NameAndButtonBox>
-                  <Typography variant="h6" sx={{ fontSize: { xs: '17px', sm: '18px', md: '24px' }, fontWeight: '500' }}>{user.name}</Typography>
-                  <UserActions>
-                    <Button sx={{ marginRight: { xs: '0px', sm: '0px', md: '8px' }, fontSize: { xs: '8px', sm: '8px', md: '18px' }, marginBottom: { xs: '0px', sm: '0px' }, width: { sm: '30px', md: '102px' }, height: { sm: '15px', md: '29px' }, borderRadius: '15px', backgroundColor: '#51A22B', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      Accepted
-                    </Button>
-                  </UserActions>
+                  <Typography variant="h6">{request.fromUser.firstName}</Typography>
+                  <Typography variant="body2" sx={{ color: '#51A22B' }}>Accepted</Typography>
                 </NameAndButtonBox>
                 <UserDetails>
-                  <Typography variant="body2">City: {user.city}</Typography>
-                  <Typography variant="body2">Age: {user.age}</Typography>
-                  <Typography variant="body2">Working: {user.working}</Typography>
-                  <Typography variant="body2">Height: {user.height}</Typography>
+                  <Typography variant="body2">City: {request.fromUser.city}</Typography>
+                  <Typography variant="body2">Age: {request.fromUser.age}</Typography>
+                  <Typography variant="body2">Working: {request.fromUser.working}</Typography>
+                  <Typography variant="body2">Height: {request.fromUser.height}</Typography>
                 </UserDetails>
-                <Typography variant="body2" color="textSecondary" sx={{ fontSize: { sm: '2px', md: '16px' }, fontWeight: '500', marginTop: { sm: '2px', md: '8px' } }}>Request on: {user.requestTime}</Typography>
-                <Button component={Link} to={`/${user.id}/profile`} sx={{ width: '182px', height: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px', color: 'black', fontWeight: '500', borderRadius: "15px", border: '1px solid black' }}>
-                  View Full Profile
-                </Button>
+                <Typography variant="body2" color="textSecondary">Requested on: {request.requestTime}</Typography>
+                <Button component={Link} to={`/profile/${request.fromUser.id}`} sx={{ marginTop: '10px' }}>View Full Profile</Button>
               </UserInfo>
             </UserCard>
           </Grid>

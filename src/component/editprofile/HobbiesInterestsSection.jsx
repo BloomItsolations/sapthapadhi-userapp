@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, TextField } from '@mui/material';
+import axios from 'axios';
 
-const HobbiesInterestsSection = () => {
+const HobbiesInterestsSection = ({ userDetails, userId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [hobbiesInterests, setHobbiesInterests] = useState('Not Specified');
+
+  useEffect(() => {
+    if (userDetails) {
+      setHobbiesInterests(userDetails.Hobbies || 'Not Specified');
+    }
+  }, [userDetails]);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -13,9 +20,25 @@ const HobbiesInterestsSection = () => {
     setHobbiesInterests(e.target.value);
   };
 
-  const handleSave = () => {
-    console.log('Hobbies and Interests saved:', hobbiesInterests);
-    setIsEditing(false); 
+  const handleSave = async () => {
+    try {
+      let formdata=new FormData();
+      formdata.append('userId',userId);
+      formdata.append('Hobbies',hobbiesInterests);
+      const response = await axios.post(
+        `${process.env.REACT_APP_BaseURL}/app/updateUserProfile`,
+        formdata,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+
+      setIsEditing(false); 
+    } catch (error) {
+      console.error('Error updating hobbies and interests:', error);
+    }
   };
 
   return (

@@ -16,7 +16,7 @@ import ChatIcon from '@mui/icons-material/Chat'; // Import chat icon
 
 const Navbar = () => {
     let location = useLocation().pathname;
-    let isMyprofilePage = location.includes('/myprofile') || location.includes('/matches') || location.includes('/editprofile') || location.includes('/editpreferences') || location.includes('/chatlist');     
+    let isMyprofilePage = location.includes('/myprofile') || location.includes('/matches') || location.includes('/editprofile') || location.includes('/editpreferences') || location.includes('/chatlist') || location.includes('/profile');     
     console.log("location", location);
     useEffect(() => {
         let response = localStorage.getItem('userdata');

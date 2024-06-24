@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
-import { Box, Typography, Button, TextField, Grid } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Typography, Button, TextField } from '@mui/material';
+import axios from 'axios';
 
-const AboutMyFamilySection = () => {
+const AboutMyFamilySection = ({ userDetails, userId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [aboutMyFamily, setAboutMyFamily] = useState('Not Specified');
+
+  useEffect(() => {
+    if (userDetails) {
+      setAboutMyFamily(userDetails.AboutMyFamilyClose || 'Not Specified');
+    }
+  }, [userDetails]);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -13,9 +20,25 @@ const AboutMyFamilySection = () => {
     setAboutMyFamily(e.target.value);
   };
 
-  const handleSave = () => {
-    console.log('About My Family saved:', aboutMyFamily);
-    setIsEditing(false); // Close edit mode after saving
+  const handleSave = async () => {
+    try {
+      let formdata=new FormData();
+      formdata.append('userId',userId);
+      formdata.append('AboutMyFamilyClose',aboutMyFamily);
+      const response = await axios.post(
+        `${process.env.REACT_APP_BaseURL}/app/updateUserProfile`,
+        formdata,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+
+      setIsEditing(false); 
+    } catch (error) {
+      console.error('Error updating about my family:', error);
+    }
   };
 
   return (

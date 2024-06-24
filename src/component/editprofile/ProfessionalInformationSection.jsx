@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, TextField, Grid } from '@mui/material';
+import axios from 'axios';
 
-const ProfessionalInformationSection = () => {
+const ProfessionalInformationSection = ({ userDetails, userId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    education: 'BCA',
-    educationDetail: 'Not Specified',
+    education: '',
+    educationDetail: '',
     college: 'Not Specified',
-    employedIn: 'Private Sector',
-    occupation: 'Software Professional',
+    employedIn: '',
+    occupation: '',
     occupationDetail: 'Not Specified',
     organization: 'Not Specified',
-    annualIncome: 'Rs. 0 - 1 Lakh'
+    annualIncome: ''
   });
+
+  useEffect(() => {
+    if (userDetails) {
+      setFormData({
+        education: userDetails.HighestEducation || '',
+        educationDetail: userDetails.educationInDetail || 'Not Specified',
+        college: userDetails.College || 'Not Specified',
+        employedIn: userDetails.EmployedIn || 'Not Specified',
+        occupation: userDetails.Occupation || 'Not Specified',
+        occupationDetail: userDetails.OccupationInDetail || 'Not Specified',
+        organization: userDetails.Organization || 'Not Specified',
+        annualIncome: userDetails.AnnualIncome || ''
+      });
+    }
+  }, [userDetails]);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -26,12 +42,35 @@ const ProfessionalInformationSection = () => {
     }));
   };
 
-  const handleSave = () => {
-    // Logic to save the updated form data
-    console.log('Form data saved:', formData);
-    setIsEditing(false); // Close edit mode after saving
+  const handleSave = async () => {
+    try {
+      const formdata = new FormData();
+      formdata.append('userId', userId);
+      formdata.append('HighestEducation', formData.education);
+      formdata.append('educationInDetail', formData.educationDetail);
+      formdata.append('College', formData.college);
+      formdata.append('EmployedIn', formData.employedIn);
+      formdata.append('Occupation', formData.occupation);
+      formdata.append('OccupationInDetail', formData.occupationDetail);
+      formdata.append('Organization', formData.organization);
+      formdata.append('AnnualIncome', formData.annualIncome);
+  
+      const response = await axios.post(
+        `${process.env.REACT_APP_BaseURL}/app/updateUserProfile`,
+        formdata,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+  
+      setIsEditing(false); 
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
   };
-
+  
   return (
     <Box
       className="boxbtmline"
@@ -40,7 +79,7 @@ const ProfessionalInformationSection = () => {
         backgroundColor: '#ffffff',
         padding: '20px',
         marginBottom: '20px',
-        marginTop:'15px'
+        marginTop: '15px'
       }}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>

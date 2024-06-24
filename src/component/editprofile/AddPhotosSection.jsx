@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 
-const AddPhotosSection = () => {
+const AddPhotosSection = ({setOpenPopup}) => {
   return (
     <Box
       id="right_TrustBadge"
@@ -17,8 +17,8 @@ const AddPhotosSection = () => {
         <Box sx={{ textAlign: 'center', width: '75px', padding: '10px 0' }}>
           <img src="https://imgs.bharatmatrimony.com/bmimgs/syspop-imgs/add-photo-edit-avatar.png" width="40" alt="Add Photos" />
         </Box>
-        <Box sx={{ textAlign: 'left', width: '175px', paddingLeft: '10px' }}>
-          <Typography variant="h6" component="div" sx={{ lineHeight: '1.2', paddingTop: '5px' }}>
+        <Box sx={{ textAlign: 'left', width: '175px', paddingLeft: '10px' }} >
+        <Typography variant="h6" component="div" sx={{ lineHeight: '1.2', paddingTop: '5px' }}>
             Add Photos
           </Typography>
           <Typography variant="body2" sx={{ lineHeight: '1.2' }}>
@@ -27,10 +27,10 @@ const AddPhotosSection = () => {
         </Box>
       </Box>
       <Box sx={{ textAlign: 'center', paddingTop: '10px' }}>
-        <Button
+        <Button 
           variant="contained"
           color="primary"
-          href=""
+          onClick={() => setOpenPopup(true)}
          
           sx={{
             backgroundColor: '#007bff',
