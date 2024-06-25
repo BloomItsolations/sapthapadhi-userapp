@@ -115,7 +115,7 @@ const RegisterPage = () => {
 
       console.log("response",response);
       if(response.data){
-        swal("Sorry! ", response?.data.message, "success");
+        swal("Congratulations! ", response?.data.message, "success");
         navigate('/login');
       }
      
@@ -236,8 +236,8 @@ const RegisterPage = () => {
               <MenuItem value="" disabled>
                 Looking For
               </MenuItem>
-              <MenuItem value="Male">Male</MenuItem>
-              <MenuItem value="Female">Female</MenuItem>
+              <MenuItem value="Male">Groom</MenuItem>
+              <MenuItem value="Female">Bride</MenuItem>
             </Select>
           </FormControl>
           <TextField
