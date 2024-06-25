@@ -49,48 +49,47 @@ const MyProfileDashboard = () => {
       <div
         className={`sidebar-container  transform transition-transform duration-300 ${
           !isChatBoxPage && isSidebarVisible ? 'translate-x-0' : '-translate-x-full'
-          } fixed md:static w-full md:w-[25%] h-[100vh] md:h-[85vh] lg:h-[85vh]  pb-8 bg-[#EDEDED] rounded-tr-[20px] rounded-bl-[20px] mt-2 z-10`}
+          } fixed md:static w-full md:w-[20%] h-[100vh] md:h-[85vh] lg:h-[85vh]  pb-8  rounded-tr-[20px] rounded-bl-[20px] mt-2 z-10`}
           >
         <img src={`https://sapthapadhi.bloomitsolutions.co.in/${userData?.userDetails.profilePhoto[0].path}`} className="w-[100px] mx-auto h-[100px] rounded-full" />
-        <div className='flex flex-col items-center gap-1 mt-2'>
-        <h3 className='text-[20px] text-black font-sans font-bold'>{userData?.user?.firstName} {userData?.user?.lastName}</h3>
-         <div className='flex gap-1'>
-          <h3 className='text-[15px] font-sans font-bold'>Membership: </h3>
-          <p>Free</p>
+        <div className='flex flex-col items-center gap-[2px] mt-2'>
+        <h3 className='text-[17px] font-semibold font-sans '>{userData?.user?.firstName} {userData?.user?.lastName}</h3>
+         <div className='flex gap-1 items-baseline'>
+          <h3 className='text-[14px] font-sans font-medium'>Membership : </h3>
+          <p className='text-[12px] font-sans font-normal'>Free</p>
          </div>
-         <p>Become a paid member now</p>
-         <button className='px-5 py-[6px] border-yellow-600 rounded-[20px] text-yellow-500 border-[1px]'>Upgrade</button>
+         <p className='text-[14px] font-sans font-normal'>Become a paid member now</p>
+         <button className='w-[120px] h-[35px] mt-[2px] border-yellow-600 rounded-[20px] text-yellow-500 border-[1px] hover:bg-yellow-500 hover:text-white'>Upgrade</button>
         </div>
-        <div className="w-[90%] mx-auto mt-4 flex flex-col gap-4">
-          <div onClick={() => handleLinkClick("/myprofile/dashboard")} className="cursor-pointer flex gap-x-4 items-center">
-            <img src="/images/dashboard.png" className="w-[34px] h-[30px]" />
-            <h3 className="text-[16px] md:text-[32px] font-normal text-black">Dashboard</h3>
+        <div className="w-[90%] mx-auto mt-3 flex flex-col items-baseline gap-3">
+          <div onClick={() => handleLinkClick("/myprofile/dashboard")} className="cursor-pointer flex gap-x-3 items-center">
+            <img src="/images/dashboard.png" className="w-[34px] h-[34px] rounded-full" />
+            <h3 className="text-[16px] md:text-[28px] font-normal text-black">Dashboard</h3>
           </div>
       
-          <div onClick={() => handleLinkClick("/myprofile")} className={`cursor-pointer flex gap-x-6 items-center ${location.pathname==='/myprofile' ? ' bg-black rounded-[10px] px-1 ': null}`}>
-            <img src="/images/profile.png" className={`w-[34px] h-[30px]  text-black ${location.pathname==='/myprofile' ? ' text-white': 'text-black'}` }/>
-            <h3 className={`text-[16px] md:text-[28px]  font-normal  ${location.pathname==='/myprofile' ? ' text-white': 'text-black'}`}>Profile</h3>
+          <div onClick={() => handleLinkClick("/myprofile")} className={`cursor-pointer w-full flex gap-x-3 items-center ${location.pathname==='/myprofile' ? ' bg-bg-gray-200 rounded-[10px] px-1 ': null}`}>
+            <img src="/images/profile.png" className={`w-[34px] h-[34px]  text-black ${location.pathname==='/myprofile' ? ' text-white': 'text-black'}` }/>
+            <h3 className={`text-[16px] md:text-[28px]  font-normal  ${location.pathname==='/myprofile' ? ' text-black': 'text-black'}`}>Profile</h3>
           </div>
-          <div onClick={() => handleLinkClick("/editprofile")} className={`cursor-pointer flex gap-x-6 items-center ${location.pathname==='/myprofile/editprofile' ? ' bg-black rounded-[10px] px-1 ': null}`}>
+          <div onClick={() => handleLinkClick("/editprofile")} className={`cursor-pointer w-full flex gap-x-3 items-center ${location.pathname==='/myprofile/editprofile' ? ' bg-gray-200 rounded-[10px] px-1 ': null}`}>
             {/* <img src="/images/profile-icon-design-free-vector-removebg-preview 1.png" className={`w-[34px] h-[30px]  text-black ${location.pathname==='/myprofile/editprofile' ? ' text-white': 'text-black'}` }/> */}
             <div><EditIcon/></div>
-            <h3 className={`text-[16px] md:text-[28px]  font-normal  ${location.pathname==='/myprofile/editprofile' ? ' text-white': 'text-black'}`}>Edit profile</h3>
+            <h3 className={`text-[16px] md:text-[28px] font-normal font-sans ml-2  ${location.pathname==='/myprofile/editprofile' ? ' text-black': 'text-black'}`}>Edit profile</h3>
           </div>
-          <div onClick={() => handleLinkClick("/editpreferences")} className={`cursor-pointer flex gap-x-6 items-center ${location.pathname==='/myprofile/editpreferences' ? ' bg-black rounded-[10px] px-1 ': null}`}>
+          <div onClick={() => handleLinkClick("/editpreferences")} className={`cursor-pointer w-full flex gap-x-3 items-center ${location.pathname==='/myprofile/editpreferences' ? ' bg-gray-200 rounded-[10px] px-1 ': null}`}>
             {/* <img src="/images/profile-icon-design-free-vector-removebg-preview 1.png" className={`w-[34px] h-[30px]  text-black ${location.pathname==='/myprofile/editprofile' ? ' text-white': 'text-black'}` }/> */}
-            <div className='text-[30px]'><LuClipboardEdit /></div>
-            <h3 className={`text-[16px] md:text-[28px]  font-normal  ${location.pathname==='/myprofile/editpreferences' ? ' text-white': 'text-black'}`}> Edit Preferences</h3>
+            <div className='text-[27px]'><LuClipboardEdit /></div>
+            <h3 className={`text-[16px] md:text-[26px]  font-normal font-sans ml-1  ${location.pathname==='/myprofile/editpreferences' ? ' text-black': 'text-black'}`}> Edit Preferences</h3>
           </div>
-
          
-          <div onClick={() => handleLinkClick("plan")} className={`cursor-pointer flex gap-x-6 items-center ${location.pathname.includes('/myprofile/plan') ? ' bg-black rounded-[10px] px-1 ': null } `}>
-            <img src="/images/afas.png" className="w-[34px] h-[30px]" />
-            <h3 className={`text-[16px] md:text-[32px] font-normal ${location.pathname.includes('/myprofile/plan') ? ' text-white ': 'text-black' } `}>Plan</h3>
+          <div onClick={() => handleLinkClick("plan")} className={`cursor-pointer flex w-full gap-x-3 items-center ${location.pathname.includes('/myprofile/plan') ? ' bg-gray-200 rounded-[10px] px-1 ': null } `}>
+            <img src="/images/afas.png" className="w-[32px] h-[32px] rounded-full" />
+            <h3 className={`text-[16px] md:text-[28px] font-normal font-sans ${location.pathname.includes('/myprofile/plan') ? ' text-black ': 'text-black' } `}>Plan</h3>
           </div>
 
-          <div onClick={() => handleLinkClick("setting")} className={`cursor-pointer flex gap-x-6 items-center ${location.pathname.includes('/myprofile/setting') ? ' bg-black rounded-[10px] px-1 ': null } `}>
-            <img src="/images/setting.png" className="w-[34px] h-[30px]" />
-            <h3 className={`text-[16px] md:text-[32px] font-normal ${location.pathname.includes('/myprofile/setting') ? ' text-white ': 'text-black' } `}>Settings</h3>
+          <div onClick={() => handleLinkClick("setting")} className={`cursor-pointer w-full flex gap-x-3 items-center ${location.pathname.includes('/myprofile/setting') ? ' bg-gray-200 rounded-[10px] px-1 ': null } `}>
+            <img src="/images/setting.png" className="w-[32px] h-[32px] rounded-full" />
+            <h3 className={`text-[16px] md:text-[28px] font-normal font-sans ${location.pathname.includes('/myprofile/setting') ? ' text-black ': 'text-black' } `}>Settings</h3>
           </div>
 
           

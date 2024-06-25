@@ -13,7 +13,7 @@ const RecommendedProfile = ({ image, age, height }) => {
     >
       <div className='flex flex-col justify-end w-full h-full p-2  text-white'>
         <p>Age: {age}</p>
-        <p>Height: {height}</p>
+        <p className='text-[10px]'>Height: {height}</p>
       </div>
     </div>
   );
