@@ -78,7 +78,7 @@ const DeniedRequestsPage = () => {
         {
             id: 1,
             name: 'Angelina',
-            avatar: '/images/Rectangle 369 (1).jpg',
+            avatar: '/images/profilepage.jpg',
             city: 'New York',
             age: 29,
             working: 'Software Engineer',
@@ -88,7 +88,7 @@ const DeniedRequestsPage = () => {
         {
             id: 2,
             name: 'John Doe',
-            avatar: '/images/Rectangle 369 (2).jpg',
+            avatar: '/images/profilepage.jpg',
             city: 'Los Angeles',
             age: 35,
             working: 'Doctor',
@@ -98,7 +98,7 @@ const DeniedRequestsPage = () => {
         {
             id: 1,
             name: 'Angelina',
-            avatar: '/images/Rectangle 369 (1).jpg',
+            avatar: '/images/profilepage.jpg',
             city: 'New York',
             age: 29,
             working: 'Software Engineer',
@@ -108,7 +108,7 @@ const DeniedRequestsPage = () => {
         {
             id: 1,
             name: 'Angelina',
-            avatar: '/images/Rectangle 369 (1).jpg',
+            avatar: '/images/profilepage.jpg',
             city: 'New York',
             age: 29,
             working: 'Software Engineer',
@@ -118,7 +118,7 @@ const DeniedRequestsPage = () => {
         {
             id: 1,
             name: 'Angelina',
-            avatar: '/images/Rectangle 369 (1).jpg',
+            avatar: '/images/profilepage.jpg',
             city: 'New York',
             age: 29,
             working: 'Software Engineer',

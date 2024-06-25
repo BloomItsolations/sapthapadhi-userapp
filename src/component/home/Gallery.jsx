@@ -29,12 +29,12 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const images = [
-  'images/Rectangle 100.jpg',
-  'images/Rectangle 102.jpg',
-  'images/Rectangle 103.jpg',
-  'images/Rectangle 101.jpg',
-  'images/Rectangle 105.jpg',
-  'images/Rectangle 106.jpg',
+  'images/galleryone.jpg',
+  'images/gallerytwo.jpg',
+  'images/gallerythree.jpg',
+  'images/galleryfour.jpg',
+  'images/galleryfifth.jpg',
+  'images/gallerysix.jpg',
 ];
 
 const Gallery = () => {

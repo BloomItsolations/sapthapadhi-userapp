@@ -78,7 +78,7 @@ const WelcomePage = () => {
                         <div>
                         <Box sx={{ marginTop: '40px' }}>
                             <img
-                                src="images/Rectangle 151.jpg"
+                                src="images/welcomepage.jpg"
                                 alt="Sample"
                                 style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
                             />
@@ -87,7 +87,7 @@ const WelcomePage = () => {
                         <div>
                         <Box sx={{ marginTop: '40px' }}>
                             <img
-                                src="images/Rectangle 151.jpg"
+                                src="images/welcomepage.jpg"
                                 alt="Sample"
                                 style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
                             />
@@ -96,7 +96,7 @@ const WelcomePage = () => {
                         <div>
                         <Box sx={{ marginTop: '40px' }}>
                             <img
-                                src="images/Rectangle 151.jpg"
+                                src="images/welcomepage.jpg"
                                 alt="Sample"
                                 style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
                             />
@@ -105,7 +105,7 @@ const WelcomePage = () => {
                         <div>
                         <Box sx={{ marginTop: '40px' }}>
                             <img
-                                src="images/Rectangle 151.jpg"
+                                src="images/welcomepage.jpg"
                                 alt="Sample"
                                 style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
                             />

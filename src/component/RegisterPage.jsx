@@ -17,7 +17,7 @@ const classes = {
 
 const Root = styled('div')(({ theme }) => ({
   [`&.${classes.root}`]: {
-    backgroundImage: "url('/images/Screenshot_2024-05-16_113228-removebg-preview 1.svg')",
+    backgroundImage: "url('/images/register.svg')",
     backgroundSize: 'contain',
     backgroundPosition: 'center',
     display: 'flex',

@@ -28,7 +28,7 @@ const ProfileSetting = () => {
             </nav>
             <div className='px-2 md:px-7 lg:px-10'>
                 <div className='flex gap-6 mt-4 '>
-                    <img src='/images/Ellipse 66.jpg' className='w-[90px] md:w-[120px] lg:w-[163px] h-[90px] md:h-[120px] lg:h-[163px] rounded-full ' />
+                    <img src='/images/userprofile.jpg' className='w-[90px] md:w-[120px] lg:w-[163px] h-[90px] md:h-[120px] lg:h-[163px] rounded-full ' />
                     <div className='mt-3 md:mt-5 lg:mt-6'>
                         <h3 className='text-[20px] md:text-[25px] lg:text-[32px] font-medium '>ANGELINA</h3>
                         <p className='text-[10px] md:text-[14px] lg:text-[16px] font-normal'>Premium User</p>
@@ -93,7 +93,7 @@ const ProfileSetting = () => {
             <div className='flex justify-between px-2 md:px-7 lg:px-10  mt-6'>
                 <div className='text-[25px] md:text-[28px] lg:text-[32px] font-normal font-serif '>ACCOUNT</div>
                 <Link to="/editprofile" className='w-[75px] md:w-[85px] lg:w-[111px] h-[30px] md:h-[34px] lg:h-[39px]  flex text-black rounded-[10px] items-center border-[1px] border-black justify-center text-[15px] md:text-[20px] lg:text-[24px] font-semibold'>
-                    <img src="/images/888_edit-removebg-preview 1.png" />
+                    <img src="/images/edit.png" />
                     <h3>Edit</h3>
                 </Link>
             </div>

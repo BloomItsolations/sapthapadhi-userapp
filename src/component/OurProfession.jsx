@@ -11,7 +11,7 @@ const OurProfession = () => {
                 {
                     [3223, 2, 12].map((vlaue) => (
                         <div className='w-[368px] shadow-2xl p-4 rounded-[10px] '>
-                            <img src='images/Rectangle 128.jpg' className='w-[368px] h-[400px] rounded-[5px] ' />
+                            <img src='images/ourprofession.jpg' className='w-[368px] h-[400px] rounded-[5px] ' />
                             <div className='border-[1px] border-black mx-auto mt-2 rounded-[15px] text-[24px] w-[227px] h-[39px] flex justify-center items-center '>Jack danial</div>
                             <p className='text-[16px] px-1 mx-auto mt-4 text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                         </div>

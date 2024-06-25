@@ -13,7 +13,7 @@ const WorkProcess = () => {
   const cardData = [
     {
       type: 'image',
-      content: 'images/6724285 1.jpg', // Replace with your image URL
+      content: 'images/workprocessimage.jpg', // Replace with your image URL
     },
     {
       type: 'text',
@@ -27,11 +27,11 @@ const WorkProcess = () => {
     },
     {
         type: 'image',
-        content: 'images/screen-0-removebg-preview 1.jpg', 
+        content: 'images/workprocessimagettwo.jpg', 
     },
     {
         type: 'image',
-        content: 'images/download-removebg-preview (2) 1.jpg', 
+        content: 'images/workprocessimagethree.jpg', 
     },
    
     {
@@ -46,11 +46,11 @@ const WorkProcess = () => {
       },
       {
         type: 'image',
-        content: 'images/Screenshot_2024-05-16_112720-removebg-preview 1.jpg', 
+        content: 'images/workprocessimagefour.jpg', 
       },
       {
         type: 'image',
-        content: 'images/Screenshot_2024-05-16_113228-removebg-preview 1.jpg', 
+        content: 'images/workprocessimagefifth.jpg', 
       },
       {
         type: 'text',
@@ -65,7 +65,7 @@ const WorkProcess = () => {
       },
       {
         type: 'image',
-        content: 'images/Screenshot_2024-05-16_113605-removebg-preview 1.jpg', 
+        content: 'images/workprocesssix.jpg', 
       },
       
   ];

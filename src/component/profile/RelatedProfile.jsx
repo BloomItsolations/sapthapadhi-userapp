@@ -38,10 +38,10 @@ const RelatedProfile = () => {
 
       <Box sx={{ maxWidth: { xs: '95%', md: '90%' }, overflow: 'hidden', padding: '30px', marginInline: 'auto' }}>
         <Slider {...settings}>
-          <RelatedProfileCard image="/images/Rectangle 145 (1).jpg" title="Jack danial" />
+          <RelatedProfileCard image="/images/relatedprofile.jpg" title="Jack danial" />
 
-          <RelatedProfileCard image="/images/Rectangle 146.jpg" title="Jack danial" />
-          <RelatedProfileCard image="/images/Rectangle 147.jpg" title="Jack danial" />
+          <RelatedProfileCard image="/images/relatedprofile.jpg" title="Jack danial" />
+          <RelatedProfileCard image="/images/relatedprofile.jpg" title="Jack danial" />
         </Slider>
       </Box>
     </Box>

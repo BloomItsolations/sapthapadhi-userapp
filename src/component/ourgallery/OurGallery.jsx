@@ -79,15 +79,15 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const images = [
-  '/images/Rectangle 299.jpg',
-  '/images/Rectangle 300.jpg',
-  '/images/Rectangle 301.jpg',
-  '/images/Rectangle 302.jpg',
-  '/images/Rectangle 303.jpg',
-  '/images/Rectangle 304.jpg',
-  '/images/Rectangle 305.jpg',
-  '/images/Rectangle 306.jpg',
-  '/images/Rectangle 307.jpg',
+  '/images/galleryimage.jpg',
+  '/images/galleryimagetwo.jpg',
+  '/images/galleryimagethree.jpg',
+  '/images/galleryimagefour.jpg',
+  '/images/galleryimagefifth.jpg',
+  '/images/galleryimagesix.jpg',
+  '/images/galleryimageseven.jpg',
+  '/images/galleryimageeight.jpg',
+  '/images/galleryimagenine.jpg',
 ];
 
 const OurGallery = () => {
@@ -97,7 +97,7 @@ const OurGallery = () => {
 
       <Box
         className={classes.banner}
-        style={{ backgroundImage: "url('/images/Rectangle 297 (1).jpg')" }}
+        style={{ backgroundImage: "url('/images/galleryimagebanner.jpg')" }}
       >
         <div className={classes.bannerTextContainer}>
           <Typography className={classes.bannerHeading} variant="h2">

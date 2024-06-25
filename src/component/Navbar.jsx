@@ -11,8 +11,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import MatchesIcon from '@mui/icons-material/Favorite'; // Import an icon from MUI or use your own icon
-import ChatIcon from '@mui/icons-material/Chat'; // Import chat icon
+import MatchesIcon from '@mui/icons-material/Favorite'; 
+import ChatIcon from '@mui/icons-material/Chat'; 
 
 const Navbar = () => {
     let location = useLocation().pathname;
@@ -142,7 +142,6 @@ const Navbar = () => {
                         <MenuItem component={Link} to="/page1">Page 1</MenuItem>
                         <MenuItem component={Link} to="/page2">Page 2</MenuItem>
                         <MenuItem component={Link} to="/page3">Page 3</MenuItem>
-                        {/* Add more MenuItems as needed */}
                     </Menu>
                 </Box>
             </Toolbar>

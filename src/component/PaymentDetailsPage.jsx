@@ -111,10 +111,10 @@ const PaymentContainer = styled(Box)(({ theme }) => ({
       </Header>
 
       <ImageContainer>
-        <img src="/images/Ellipse 76.png" alt="Phone Pay" width="80" />
-        <img src="/images/Ellipse 77.png" alt="Google Pay" width="80" />
-        <img src="/images/Ellipse 78.png" alt="Paytm" width="80" />
-        <img src="/images/Ellipse 79.png" alt="PayPal" width="80" />
+        <img src="/images/PhonePay.png" alt="Phone Pay" width="80" />
+        <img src="/images/Googlepay.png" alt="Google Pay" width="80" />
+        <img src="/images/paytm.png" alt="Paytm" width="80" />
+        <img src="/images/paypal.png" alt="PayPal" width="80" />
       </ImageContainer>
 
       <FormControl component="fieldset" sx={{ mb: 2, width: '100%', marginTop:'40px' }}>

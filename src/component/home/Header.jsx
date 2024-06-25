@@ -54,7 +54,7 @@ const Header = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: 'url("images/Rectangle 54.jpg")',
+          backgroundImage: 'url("images/homepageimage.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'blur(0.5px)',
@@ -166,8 +166,8 @@ const Header = () => {
               fullWidth
               sx={{
                 backgroundColor: '#607D8B',
-                padding: { xs: '0px 20px', sm: '0px 24px' }, // Adjust padding for different screen sizes
-                fontSize: { xs: '16px', sm: '18px' }, // Adjust font size for different screen sizes
+                padding: { xs: '0px 20px', sm: '0px 24px' }, 
+                fontSize: { xs: '16px', sm: '18px' }, 
               }}
             >
               Let's Begin

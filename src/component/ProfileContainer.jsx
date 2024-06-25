@@ -72,7 +72,7 @@ const ApplyButton = styled(Button)(({ theme }) => ({
 
 
 const BannerContainer = styled(Box)(({ theme }) => ({
-    backgroundImage: `url('/images/Rectangle 158.jpg')`,
+    backgroundImage: `url('/images/profilebannercontainer.jpg')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     display: 'flex',
@@ -310,7 +310,7 @@ const AllProfilesPage = () => {
                         {filteredProfiles.map((profile) => (
                             <div className='w-full h-auto lg:h-[210px] flex border-gray-500 border-[1px] items-center mt-5 ml-2 rounded-[10px] flex-col lg:flex-row'>
                                 <div className='w-[90%] lg:w-[40%] h-[190px]'>
-                                    <img src="/images/Rectangle 168 (1).jpg" className='p-[1px] w-[75%] h-[100%]' />
+                                    <img src="/images/profilecontainerrightsideimage.jpg" className='p-[1px] w-[75%] h-[100%]' />
                                 </div>
                                 <div className='w-[90%] flex flex-col gap-3 justify-center lg:w-[60%]'>
                                     <h2 className='text-[15px] lg:text-[24px] font-medium font-sans  '>AISHA</h2>

@@ -39,9 +39,9 @@ const BestOne = () => {
     <Typography sx={{borderRadius: '0px 10px 0 10px', display:'flex', justifyContent:'center', marginLeft:{xs:'0px',md:'64px'}, border: '1px solid black', width:{ xs: 'auto', sm: '300px', md: '526px' },fontSize:{xs:'25px',md:"40px"}, backgroundColor: '#f9f9f9',}}  variant="h4" component="div">CATCH UP THE BEST ONE</Typography>
     <Box sx={{ maxWidth: { xs: '95%', md: '90%' }, overflow: 'hidden', padding:'30px', marginInline:'auto' }}>
     <Slider {...settings}>
-      <BestOneCard image="images/Rectangle 145 (1).jpg" title="Jack danial"/>
-      <BestOneCard image="images/Rectangle 146.jpg" title="Jack danial"/>
-      <BestOneCard image="images/Rectangle 147.jpg" title="Jack danial"/>
+      <BestOneCard image="images/weddingimage.jpg" title="Jack danial"/>
+      <BestOneCard image="images/weddingimagetwo.jpg" title="Jack danial"/>
+      <BestOneCard image="images/weddingimagethree.jpg" title="Jack danial"/>
     </Slider>
     </Box>
   </Box>

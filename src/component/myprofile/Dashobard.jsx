@@ -2,7 +2,6 @@ import React from 'react'
 import ProfileViewGraph from './ProfileViewGraph'
 
 const Dashobard = ({userData}) => {
-    console.log("UserData",userData);
     const calculateFilledPercentage = (userData) => {
         let totalFields = 0;
         let filledFields = 0;

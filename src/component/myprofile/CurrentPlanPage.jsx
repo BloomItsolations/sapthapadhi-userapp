@@ -85,7 +85,7 @@ const CurrentPlanPage = () => {
           Current Plan
         </Typography>
         <Box>
-          <img src="/images/images-removebg-preview (2) 1.svg" alt="Plan Image" style={{ width:{sm:'100px',md:'148px'}, height:{sm:'120px',md:'161px'}}} />
+          <img src="/images/planPagge.svg" alt="Plan Image" style={{ width:{sm:'100px',md:'148px'}, height:{sm:'120px',md:'161px'}}} />
         </Box>
         <Typography variant="body1" gutterBottom sx={{display:'flex',gap:'5px',alignItems:'baseline'}}>
            

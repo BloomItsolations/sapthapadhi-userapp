@@ -7,7 +7,7 @@ const ChatBox = () => {
     const navigate=useNavigate();
   const [user] = useState({
     name: 'ANGELINA',
-    avatar: '/images/Ellipse 52 (1).png',
+    avatar: '/images/chatuser.png',
     status: 'online', // Can be 'online' or 'offline'
   });
 

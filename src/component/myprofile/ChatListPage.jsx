@@ -46,7 +46,7 @@ const ChatListPage = () => {
       name: 'ANGELINA',
       message: 'Hi, How are you',
       unreadCount: 3,
-      avatar: '/images/Ellipse 51 (2).png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/1',
     },
 
@@ -55,7 +55,7 @@ const ChatListPage = () => {
       name: 'ANGELINA',
       message: 'Hi, How are you',
       unreadCount: 3,
-      avatar: '/images/Ellipse 51 (2).png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/1',
     },
 
@@ -64,7 +64,7 @@ const ChatListPage = () => {
       name: 'ANGELINA',
       message: 'Hi, How are you',
       unreadCount: 3,
-      avatar: '/images/Ellipse 51 (2).png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/1',
     },
     {
@@ -72,7 +72,7 @@ const ChatListPage = () => {
       name: 'Jane Smith',
       message: 'Let\'s catch up tomorrow!',
       unreadCount: 1,
-      avatar: '/images/Ellipse 42.png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/2',
     },
     {
@@ -80,7 +80,7 @@ const ChatListPage = () => {
       name: 'Mark Johnson',
       message: 'What\'s the update on the project?',
       unreadCount: 0,
-      avatar: '/images/Ellipse 42.png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/3',
     },
     {
@@ -88,7 +88,7 @@ const ChatListPage = () => {
       name: 'ANGELINA',
       message: 'Hi, How are you',
       unreadCount: 3,
-      avatar: '/images/Ellipse 51 (2).png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/1',
     },
     {
@@ -96,7 +96,7 @@ const ChatListPage = () => {
       name: 'ANGELINA',
       message: 'Hi, How are you',
       unreadCount: 3,
-      avatar: '/images/Ellipse 51 (2).png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/1',
     },
     {
@@ -104,7 +104,7 @@ const ChatListPage = () => {
       name: 'ANGELINA',
       message: 'Hi, How are you',
       unreadCount: 3,
-      avatar: '/images/Ellipse 51 (2).png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/1',
     },
     {
@@ -112,7 +112,7 @@ const ChatListPage = () => {
       name: 'ANGELINA',
       message: 'Hi, How are you',
       unreadCount: 3,
-      avatar: '/images/Ellipse 51 (2).png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/1',
     },
     {
@@ -120,7 +120,7 @@ const ChatListPage = () => {
       name: 'ANGELINA',
       message: 'Hi, How are you',
       unreadCount: 3,
-      avatar: '/images/Ellipse 51 (2).png',
+      avatar: '/images/chatusertwo.png',
       link: 'chatlist/1',
     },
     

@@ -43,7 +43,6 @@ const AboutMyFamilySection = ({ userDetails, userId }) => {
 
   return (
     <Box
-      className="boxbtmline"
       sx={{
         border: '1px solid #dadada',
         backgroundColor: '#ffffff',

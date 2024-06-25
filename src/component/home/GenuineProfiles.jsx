@@ -14,8 +14,8 @@ const GenuineProfiles = () => {
     <div className='w-[100%] md:w-[95%] lg:w-[85%] mx-auto'>
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 4, padding: 2 }}>
       
-        <GenuineProfilesCard title="Genuine profiles" imageUrl="images/genuine-people-vs-fake-infographic-lifehack-8-58232133a6a34__880-removebg-preview 1.svg"   paragraph="Contact genuine profiles with 100% verified mobile"/>
-        <GenuineProfilesCard title="Most trusted" imageUrl="images/genuine-people-vs-fake-infographic-lifehack-7-5823213246255__880-removebg-preview 2.svg"   paragraph="The most trusted wedding matrimony brand lorem"/>
+        <GenuineProfilesCard title="Genuine profiles" imageUrl="images/genuineprofile.svg"   paragraph="Contact genuine profiles with 100% verified mobile"/>
+        <GenuineProfilesCard title="Most trusted" imageUrl="images/genuineprofiletwo.svg"   paragraph="The most trusted wedding matrimony brand lorem"/>
       </Box>
     </div>
   );

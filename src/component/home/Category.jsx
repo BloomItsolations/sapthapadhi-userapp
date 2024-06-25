@@ -53,9 +53,9 @@ const Category = () => {
       </Typography>
       <Box sx={{ maxWidth: { xs: '95%', md: '92%' }, overflow: 'hidden', padding: '30px', marginInline: 'auto' }}>
         <Slider {...settings}>
-          <CategoryCard image="images/Rectangle 145 (1).jpg" title="Wedding Page" />
-          <CategoryCard image="images/Rectangle 146.jpg" title="All Services" />
-          <CategoryCard image="images/Rectangle 147.jpg" title="Join Now" />
+          <CategoryCard image="images/weddingimage.jpg" title="Wedding Page" />
+          <CategoryCard image="images/weddingimagetwo.jpg" title="All Services" />
+          <CategoryCard image="images/weddingimagethree.jpg" title="Join Now" />
         </Slider>
       </Box>
     </Box>

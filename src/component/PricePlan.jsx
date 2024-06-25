@@ -6,26 +6,26 @@ const PricePlan = ({ setSelected }) => {
   const [selectedPlan, setSelectedPlan] = useState(null);
 
   const freeFeatures = [
-    { icon: '/images/Ellipse 51 (1).png', text: '5 Premium Profiles view /mo' },
-    { icon: '/images/Ellipse 52.png', text: 'Free user profile can view' },
-    { icon: '/images/Ellipse 51 (1).png', text: 'View contact details' },
-    { icon: '/images/Ellipse 51 (1).png', text: 'Send interest' },
+    { icon: '/images/cross.png', text: '5 Premium Profiles view /mo' },
+    { icon: '/images/righttick.png', text: 'Free user profile can view' },
+    { icon: '/images/cross.png', text: 'View contact details' },
+    { icon: '/images/cross.png', text: 'Send interest' },
   ];
 
   const goldFeatures = [
-    { icon: '/images/Ellipse 52.png', text: '20 Premium Profiles view /mo' },
-    { icon: '/images/Ellipse 52.png', text: 'Free user profile can view' },
-    { icon: '/images/Ellipse 52.png', text: 'View contact details' },
-    { icon: '/images/Ellipse 52.png', text: 'Send interest' },
-    { icon: '/images/Ellipse 52.png', text: 'Start Chat' },
+    { icon: '/images/righttick.png', text: '20 Premium Profiles view /mo' },
+    { icon: '/images/righttick.png', text: 'Free user profile can view' },
+    { icon: '/images/righttick.png', text: 'View contact details' },
+    { icon: '/images/righttick.png', text: 'Send interest' },
+    { icon: '/images/righttick.png', text: 'Start Chat' },
   ];
 
   const platinumFeatures = [
-    { icon: '/images/Ellipse 52.png', text: '50 Premium Profiles view /mo' },
-    { icon: '/images/Ellipse 52.png', text: 'Free user profile can view' },
-    { icon: '/images/Ellipse 52.png', text: 'View contact details' },
-    { icon: '/images/Ellipse 52.png', text: 'Send interest' },
-    { icon: '/images/Ellipse 52.png', text: 'Start Chat' },
+    { icon: '/images/righttick.png', text: '50 Premium Profiles view /mo' },
+    { icon: '/images/righttick.png', text: 'Free user profile can view' },
+    { icon: '/images/righttick.png', text: 'View contact details' },
+    { icon: '/images/righttick.png', text: 'Send interest' },
+    { icon: '/images/righttick.png', text: 'Start Chat' },
   ];
   const navigate = useNavigate();
   const handlePlanSelect = (plan, planname) => {
@@ -35,8 +35,15 @@ const PricePlan = ({ setSelected }) => {
 
   return (
     <>
-      <div className='bgimageprice h-[200px] md:h-[400px] lg:h-[640px]  w-full ' >
-        <div className='ml-16 pt-2 md:pt-10 lg:pt-10'>
+    <div
+      className='h-[200px] md:h-[400px] lg:h-[640px] w-full'
+      style={{
+        backgroundImage: "url(/images/priceplanimage.jpg)",
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >        <div className='ml-16 pt-2 md:pt-10 lg:pt-10'>
           <h3 className='text-[35px] md:text-[40px] lg:text-[48px] font-semibold text-white font-sans'>PRICING</h3>
           <h4 className='text-[20px] md:text-[28px] lg:text-[32px] mt-2 md:mt-4 lg:mt-5 ml-4 text-white m-0 p-0 font-medium font-sans'>Get Started </h4>
           <p className='text-[15px] md:text-[20px] lg:text-[24px] m-0 p-0 text-white font-medium font-sans'>Pick your plan now</p>

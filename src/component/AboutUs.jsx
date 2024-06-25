@@ -74,7 +74,7 @@ const AboutUs = () => {
                 <Grid container className={classes.section} sx={{ paddingInline: { xs: '15px', sm: '25px', md: '35px', lg: '60px', xl: '80px' }, marginTop: '50px', display: 'flex', alignItems: 'center' }}>
                     <Grid item xs={12} md={6}>
                         <img
-                            src="images/Rectangle 126.jpg"
+                            src="images/aboutusimage.jpg"
                             alt="About Us"
                             className={classes.image}
                             sx={{ width: '514px', height: '600px' }}
@@ -112,7 +112,7 @@ const AboutUs = () => {
                 </div>
                 <div className='border-[3px] border-black border-dashed w-[300px] h-[360px] md:h-[500px] lg:h-[500px] rounded-[10px] flex justify-center items-center'>
                     <img
-                        src="images/images-removebg-preview 1.jpg"
+                        src="images/aboutusimagefour.jpg"
                         alt="Image 1"
                     />
                 </div>

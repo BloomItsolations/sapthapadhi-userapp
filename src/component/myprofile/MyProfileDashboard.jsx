@@ -63,12 +63,12 @@ const MyProfileDashboard = () => {
         </div>
         <div className="w-[90%] mx-auto mt-4 flex flex-col gap-4">
           <div onClick={() => handleLinkClick("/myprofile/dashboard")} className="cursor-pointer flex gap-x-4 items-center">
-            <img src="/images/images-removebg-preview (1) 1.png" className="w-[34px] h-[30px]" />
+            <img src="/images/dashboard.png" className="w-[34px] h-[30px]" />
             <h3 className="text-[16px] md:text-[32px] font-normal text-black">Dashboard</h3>
           </div>
       
           <div onClick={() => handleLinkClick("/myprofile")} className={`cursor-pointer flex gap-x-6 items-center ${location.pathname==='/myprofile' ? ' bg-black rounded-[10px] px-1 ': null}`}>
-            <img src="/images/profile-icon-design-free-vector-removebg-preview 1.png" className={`w-[34px] h-[30px]  text-black ${location.pathname==='/myprofile' ? ' text-white': 'text-black'}` }/>
+            <img src="/images/profile.png" className={`w-[34px] h-[30px]  text-black ${location.pathname==='/myprofile' ? ' text-white': 'text-black'}` }/>
             <h3 className={`text-[16px] md:text-[28px]  font-normal  ${location.pathname==='/myprofile' ? ' text-white': 'text-black'}`}>Profile</h3>
           </div>
           <div onClick={() => handleLinkClick("/editprofile")} className={`cursor-pointer flex gap-x-6 items-center ${location.pathname==='/myprofile/editprofile' ? ' bg-black rounded-[10px] px-1 ': null}`}>

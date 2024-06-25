@@ -37,9 +37,9 @@ const RecentCouple = () => {
           <Typography sx={{borderRadius: '0px 10px 0 10px', display:'flex', justifyContent:'center', border: '1px solid black', width:{ xs: 'auto', sm: '300px', md: '387px' },fontSize:{xs:'25px',md:"40px"},marginLeft:{xs:'0px',md:'64px'}, backgroundColor: '#f9f9f9',}}  variant="h4" component="div">RECENT COUPLES</Typography>
           <Box sx={{ maxWidth: { xs: '95%', md: '90%' }, overflow: 'hidden', padding:'30px', marginInline:'auto' }}>
           <Slider {...settings}>
-            <RecentCoupleCard image="images/Rectangle 154.jpg" title="Nitya & Naveen" />
-            <RecentCoupleCard image="images/Rectangle 155.jpg" title="Nitya & Naveen" />
-            <RecentCoupleCard image="images/Rectangle 147.jpg" title="Nitya & Naveen" />
+            <RecentCoupleCard image="images/recentcouple.jpg" title="Nitya & Naveen" />
+            <RecentCoupleCard image="images/recentcoupletwo.jpg" title="Nitya & Naveen" />
+            <RecentCoupleCard image="images/recentcouple.jpg" title="Nitya & Naveen" />
           </Slider>
           </Box>
         </Box>

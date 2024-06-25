@@ -82,7 +82,7 @@ const Profile = () => {
   return (
     <>
       {/* Profile Banner */}
-      <div className='profilebgimage w-full h-[220px] md:h-[420px] lg:h-[595px] flex flex-col justify-end items-center' style={{
+      <div className=' w-full h-[220px] md:h-[420px] lg:h-[595px] flex flex-col justify-end items-center' style={{
         backgroundImage: `url('https://sapthapadhi.bloomitsolutions.co.in/${userDetails?.userDetails?.profilePhoto?.length > 0 ? userDetails?.userDetails?.profilePhoto[0]?.path : ''}')`,
         backgroundSize: 'contain',
         backgroundPosition: 'center',
