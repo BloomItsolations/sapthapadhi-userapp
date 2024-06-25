@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ProfileViewGraph from './ProfileViewGraph'
+import axios from 'axios';
 
-const Dashobard = ({userData}) => {
+const Dashobard = () => {
+
+  let userId=JSON.parse(localStorage.getItem('userdata'))?.userId;
+  const [userData,setuserData]=useState(null) 
+  useEffect(()=>{
+       const fetchData=async ()=>{
+        let data=await axios.get(`${process.env.REACT_APP_BaseURL}/app/viewProfile/${userId}`)
+        data=await data.data;
+        setuserData(data);
+       }
+       if(userId){
+         fetchData();
+       }
+  },[])
+
     const calculateFilledPercentage = (userData) => {
         let totalFields = 0;
         let filledFields = 0;
