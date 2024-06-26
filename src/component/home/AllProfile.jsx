@@ -61,7 +61,7 @@ const AllProfile = () => {
         },
     ];
     return (
-        <div className=''>
+        <div className='bg-[#f5f5f5]'>
             <UserProfileCarousel profiles={profiles} />
         </div>
     )

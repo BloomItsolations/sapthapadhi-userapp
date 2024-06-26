@@ -10,6 +10,17 @@
 
 }
 
+.slick-prev:before,
+.slick-next:before {
+  color: black; /* Change to desired color */
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 1;
+}
+
+
 .sidebar-container::-webkit-scrollbar {
     width: 4px;
 }

@@ -29,6 +29,17 @@ import MathcesProfile from './component/matches/MathcesProfile';
 import UserDashboard from './component/myprofile/UserDashboard';
 import EditPreference from './component/myprofile/EditPreference';
 import EditProfile from './component/editprofile/EditProfile';
+import AdminApp from './admin/AdminApp';
+import AdminDashboardLayout from './admin/AdminDashboardLayout';
+import AdminLogin from './admin/AdminLogin';
+import UserList from './admin/UserList';
+import UserProfilePage from './admin/UserList';
+import UserPlanAndPayment from './admin/UserPlanAndPayment';
+import AddCouplePage from './admin/AddCouplePage';
+import AdminBannerUploadPage from './admin/BannerUploadPage';
+import SendRequestProfile from './component/profile/SendRequestProfile';
+import ViewNewRequestProfile from './component/profile/ViewNewRequestProfile';
+import ViewAcceptedProfile from './component/profile/ViewAcceptedProfile';
 
 
 function App() {
@@ -36,34 +47,45 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/login' element={<LoginPage/>}/>
-      <Route path='/' element={<Dashboard/>}>
-      <Route path='/profile/:id' element={<Profile/>}/>
-      <Route path='/register' element={<RegisterPage/>}/>
-      <Route path='/aboutus' element={<AboutUs/>}/>
-      <Route path='/priceplan' element={<PricePlan setSelected={setSelectedPlan}/>}/>
-      <Route path="/priceplan/:plan" element={<PaymentDetailsPage selectedPlan={selectedPlan}/>} />
-      <Route path="/priceplan/success/:plan" element={<PaymentSuccessPage selectedPlan={selectedPlan}/>} />
-      <Route path='/allprofile' element={<AllProfilesPage/>}/>
-      <Route path='/ourgallery' element={<OurGallery/>}/>
-      <Route path='/ourservice' element={<OurService/>}/>
-      <Route path='/editprofile' element={<EditProfile/>}/>
-      <Route path='/paymentpage' element={<PaymentPage/>}/>
-      <Route path='/matches' element={<InterestedUser/>}/>
-      <Route path='/inquary' element={<InquiryPage/>}/>
-      <Route path='/chatlist' element={<ChatListPage/>}/>
-      <Route path='/chatlist/:id' element={<ChatBox/>}/>
-      <Route path='/editpreferences' element={<EditPreference/>}/>
-      {/* <Route path='/edituserprofile' element={<EditProfilePage/>}/> */}
-      <Route path='/myprofile' element={<MyProfileDashboard/>}>
-           <Route path="/myprofile" element={<Dashobard/>}/>
-           <Route path='setting' element={<ProfileSetting/>}/>
-           <Route path='plan' element={<CurrentPlanPage/>}/>
-           <Route path='plan/cencle' element={<PlanCancellationPage/>}/>
-           <Route path='intersted' element={<InterestedUser/>}/>
-          <Route path="dashboard" element={<UserDashboard/>}/>
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path='/admin' element={<AdminDashboardLayout />}>
+        <Route path='userslist' element={<UserProfilePage />} />
+        <Route path='usersplandetails' element={<UserPlanAndPayment />} />
+        <Route path='uploadcouplepage' element={<AddCouplePage />} />
+        <Route path='uploadbanner' element={<AdminBannerUploadPage />} />
       </Route>
-      <Route index element={<Home/>}/>
+
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/' element={<Dashboard />}>
+        <Route path='/profile/:id' element={<Profile />} />
+        <Route path='/SendRequestProfile/:id' element={<SendRequestProfile />} />
+        <Route path='/ViewNewRequestProfile/:id' element={<ViewNewRequestProfile />} />
+        <Route path='/ViewAcceptedProfile/:id' element={<ViewAcceptedProfile />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/aboutus' element={<AboutUs />} />
+        <Route path='/priceplan' element={<PricePlan setSelected={setSelectedPlan} />} />
+        <Route path="/priceplan/:plan" element={<PaymentDetailsPage selectedPlan={selectedPlan} />} />
+        <Route path="/priceplan/success/:plan" element={<PaymentSuccessPage selectedPlan={selectedPlan} />} />
+        <Route path='/allprofile' element={<AllProfilesPage />} />
+        <Route path='/ourgallery' element={<OurGallery />} />
+        <Route path='/ourservice' element={<OurService />} />
+        <Route path='/editprofile' element={<EditProfile />} />
+        <Route path='/paymentpage' element={<PaymentPage />} />
+        <Route path='/matches' element={<InterestedUser />} />
+        <Route path='/inquary' element={<InquiryPage />} />
+        <Route path='/chatlist' element={<ChatListPage />} />
+        <Route path='/chatlist/:id' element={<ChatBox />} />
+        <Route path='/editpreferences' element={<EditPreference />} />
+        {/* <Route path='/edituserprofile' element={<EditProfilePage/>}/> */}
+        <Route path='/myprofile' element={<MyProfileDashboard />}>
+          <Route path="/myprofile" element={<Dashobard />} />
+          <Route path='setting' element={<ProfileSetting />} />
+          <Route path='plan' element={<CurrentPlanPage />} />
+          <Route path='plan/cencle' element={<PlanCancellationPage />} />
+          <Route path='intersted' element={<InterestedUser />} />
+          <Route path="dashboard" element={<UserDashboard />} />
+        </Route>
+        <Route index element={<Home />} />
       </Route>
     </Routes>
   )

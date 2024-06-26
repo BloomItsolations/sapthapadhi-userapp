@@ -16,8 +16,7 @@ const UserProfileCarousel = ({ profiles }) => {
     slidesToScroll: 1,
     autoplay: true,   
     slidesToShow: 3,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    
     responsive: [
       {
         breakpoint: 1024, 
@@ -35,7 +34,7 @@ const UserProfileCarousel = ({ profiles }) => {
   };
 
   return (
-     <Box sx={{ maxWidth: '90%', overflow: 'hidden', padding:'30px', marginInline:'auto' }}>
+     <Box sx={{ maxWidth: '95%', overflow: 'hidden', padding:'30px', marginInline:'auto' }}>
         <Slider {...settings}>
       {profiles.map((profile, index) => (
         <div>

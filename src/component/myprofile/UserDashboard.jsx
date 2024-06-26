@@ -12,6 +12,9 @@ const UserDashboard = () => {
   const [matches, setMatches] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [recommend,setRecommended]=useState([]);
+    let myid=JSON.parse(localStorage.getItem('userdata'))?.userId;
+    console.log("Myid",myid);
+
   useEffect(() => {
     fetchMatches();
     recommendedFetch(); 
@@ -19,7 +22,7 @@ const UserDashboard = () => {
 
   const fetchMatches = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BaseURL}/app/matches/2`);
+      const response = await axios.get(`${process.env.REACT_APP_BaseURL}/app/matches/${myid}`);
       console.log("Response", response.data);
 
       setMatches(response.data);
@@ -33,7 +36,7 @@ const UserDashboard = () => {
   const recommendedFetch=async ()=>{
     try {
       setIsLoading(true);
-       const response=await axios.get(`${process.env.REACT_APP_BaseURL}/app/recommendedProfiles/2`);
+       const response=await axios.get(`${process.env.REACT_APP_BaseURL}/app/recommendedProfiles/${myid}`);
        setRecommended(response.data);
        setIsLoading(false);
     } catch (error) {
@@ -48,7 +51,7 @@ const UserDashboard = () => {
     speed: 500,
     slidesToScroll: 1,
     autoplay: true,
-    slidesToShow: 5,
+    slidesToShow: 3,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
@@ -69,26 +72,46 @@ const UserDashboard = () => {
 
   return (
     <>
-      <div className=' h-[85vh] overflow-y-scroll pb-6'>
-        {/* Pending verification section */}
-        <Grid container sx={{ border: '#ffcf77 2px solid', marginTop: '20px', padding: '10px', width: '98%', borderRadius: '15px', marginInline: 'auto', display: 'flex', alignItems: 'center' }}>
-          <Grid item xs={1.1} >
-            <VerifiedUserIcon />
-          </Grid>
-          <Grid item xs={8.9} >
-            <Typography variant="body1" sx={{ color: '#e06506' }}>
-              Your profile is pending verification! Verify now to get better responses
-            </Typography>
-          </Grid>
-          <Grid item xs={2} style={{ textAlign: 'right' }}>
-            <Link to={'/editprofile'} className='bg-[#e06506] px-4 py-2 rounded-[10px] text-white hover:bg-[#ad5c1d]'>
-              Verify Profile
-            </Link>
-          </Grid>
+      <div className=' pb-6'>
+        {/* Pending verification section */}<Grid container sx={{
+        border: '#ffcf77 2px solid',
+        marginTop: '20px',
+        padding: '10px',
+        width: '98%',
+        borderRadius: '15px',
+        marginInline: 'auto',
+        display: 'flex',
+        alignItems: 'center',
+        '@media (max-width: 600px)': { // Media query for mobile view
+          flexDirection: 'column', // Stack items vertically on small screens
+          padding: '8px',
+        }
+      }}>
+        <Grid item xs={1.1} style={{ marginBottom: '10px', textAlign: 'center' }}>
+          <VerifiedUserIcon />
         </Grid>
+        <Grid item xs={8.9} style={{ marginBottom: '10px' }}>
+          <Typography variant="body1" sx={{ color: '#e06506', fontSize: { xs: '12px', sm: '12px', md: '20px' } }}>
+            Your profile is pending verification! Verify now to get better responses
+          </Typography>
+        </Grid>
+        <Grid item xs={12} style={{ textAlign: 'center', marginTop: '10px' }}>
+          <Link to={'/editprofile'} className='bg-[#e06506] px-2 py-1 rounded-[10px] text-white hover:bg-[#ad5c1d]'>
+            Verify Profile
+          </Link>
+        </Grid>
+      </Grid>
+
 
         {/* Recommended profiles section */}
         <h1 className='text-[28px] mt-4 ml-4 font-sans font-medium text-black'>Your Journey So Far</h1>
+        <div className='bg-[#f3e8f5] w-[200px] h-[100px] rounded-md flex justify-around ml-3 items-center '>
+         <div className='flex flex-col items-center justify-center'>
+         <h2 className='text-[20px] font-sans font-bold '>2</h2>
+         <p>Viewed You</p>
+         </div>
+         <img className='h-[70px] w-[70px] rounded-full ' src="https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png"/>
+        </div>
         <Box sx={{ paddingInline: '5px', paddingBlock: '10px' }}>
           <Typography sx={{ marginLeft: { xs: '0px', md: '10px' }, marginTop: '20px', fontSize: { xs: '25px', md: "28px" } }} variant="h4" component="div">Recommended Profile</Typography>
           <Box sx={{ maxWidth: { xs: '95%', md: '95%' }, overflow: 'hidden', padding: '20px', marginInline: 'auto', marginTop: '20px' }}>
@@ -100,6 +123,7 @@ const UserDashboard = () => {
                   image={value.profilePhoto ? `https://sapthapadhi.bloomitsolutions.co.in/${value.profilePhoto[0].path}` : 'https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png'}
                   age={value.age}
                   height={value.height}
+                  id={value.id}
                 />))
               }
   
@@ -116,9 +140,10 @@ const UserDashboard = () => {
               {matches.map(match => (
                 <RecommendedProfile
                   key={match.id}
-                  image={match.profilePhoto ? `https://sapthapadhi.bloomitsolutions.co.in/${match.profilePhoto[0].path}` : 'https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png'}
+                  image={match.profilePhoto ? `https://sapthapadhi.bloomitsolutions.co.in/${match?.profilePhoto[0]?.path}` : 'https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png'}
                   age={match.age}
                   height={match.height}
+                  id={match.id}
                 />))}
             </Slider>
           </Box>

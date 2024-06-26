@@ -77,6 +77,7 @@ const Header = () => {
           variant="h3"
           sx={{
             fontSize: { xs: '24px', sm: '40px', md: '64px' },
+            fontFamily:'Noto Serif',
             mb: 2,
             fontWeight: '600'
           }}
@@ -88,6 +89,7 @@ const Header = () => {
           variant="h6"
           sx={{
             fontSize: { xs: '16px', sm: '30px', md: '48px' },
+            fontFamily:'Cabin',
             mb: 4,
           }}
         >

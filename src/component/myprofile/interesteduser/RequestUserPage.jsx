@@ -166,7 +166,7 @@ const RequestUserPage = ({userId}) => {
                     <Typography variant="body2">Height: {request.fromUser.height}</Typography>
                   </UserDetails>
                   <Typography variant="body2" color="textSecondary" sx={{ fontSize: { sm: '2px', md: '16px' }, fontWeight: '500', marginTop: { sm: '2px', md: '8px' } }}>Request on: {request.createdAt}</Typography>
-                  <Button component={Link} to={`/profile/${request.fromUser.id}`} sx={{ width: '182px', height: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px', color: 'black', fontWeight: '500', borderRadius: "15px", border: '1px solid black' }}>
+                  <Button component={Link} to={`/ViewNewRequestProfile/${request.fromUser.id}`} sx={{ width: '182px', height: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px', color: 'black', fontWeight: '500', borderRadius: "15px", border: '1px solid black' }}>
                     View Full Profile
                   </Button>
                 </UserInfo>
