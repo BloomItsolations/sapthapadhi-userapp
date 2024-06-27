@@ -44,6 +44,7 @@ import ViewAcceptedProfile from './component/profile/ViewAcceptedProfile';
 
 function App() {
   const [selectedPlan, setSelectedPlan] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <Routes>
@@ -56,7 +57,7 @@ function App() {
       </Route>
 
       <Route path='/login' element={<LoginPage />} />
-      <Route path='/' element={<Dashboard />}>
+      <Route path='/' element={<Dashboard sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>}>
         <Route path='/profile/:id' element={<Profile />} />
         <Route path='/SendRequestProfile/:id' element={<SendRequestProfile />} />
         <Route path='/ViewNewRequestProfile/:id' element={<ViewNewRequestProfile />} />
@@ -77,7 +78,7 @@ function App() {
         <Route path='/chatlist/:id' element={<ChatBox />} />
         <Route path='/editpreferences' element={<EditPreference />} />
         {/* <Route path='/edituserprofile' element={<EditProfilePage/>}/> */}
-        <Route path='/myprofile' element={<MyProfileDashboard />}>
+        <Route path='/myprofile' element={<MyProfileDashboard setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen}/>}>
           <Route path="/myprofile" element={<Dashobard />} />
           <Route path='setting' element={<ProfileSetting />} />
           <Route path='plan' element={<CurrentPlanPage />} />

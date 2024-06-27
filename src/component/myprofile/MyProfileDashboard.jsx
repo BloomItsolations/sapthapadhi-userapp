@@ -12,14 +12,14 @@ import { CssBaseline, Drawer, Grid } from '@mui/material';
 import MyProfileSideBar from './MyProfileSideBar';
 
 
-const MyProfileDashboard = () => {
+const MyProfileDashboard = ({setSidebarOpen, sidebarOpen}) => {
   let userId = JSON.parse(localStorage.getItem('userdata'))?.userId;
   const [userData, setuserData] = useState(null);
   const navigate = useNavigate();
 
   useEffect(()=>{
        if(!userId){
-        navigate('/')            
+        // navigate('/')            
        }
   },[])
   useEffect(() => {
@@ -62,7 +62,7 @@ const MyProfileDashboard = () => {
   return (
     <div className='flex justify-center '>
       <div className="flex flex-col md:flex-row w-[90%]">
-       <MyProfileSideBar userData={userData}/>
+       <MyProfileSideBar userData={userData} setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen}/>
 
         <div className="w-full md:w-[70%]  md:mt-0 ml-auto ">
           {selectedPage && !isSidebarVisible && isMobile && (

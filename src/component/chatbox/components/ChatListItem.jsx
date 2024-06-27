@@ -1,0 +1,75 @@
+import React from 'react';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import CircleIcon from '@mui/icons-material/Circle';
+import AvatarWithStatus from './AvatarWithStatus';
+import { toggleMessagesPane } from '../utils';
+
+function ChatListItem(props) {
+  const { id, sender, messages, selectedChatId, setSelectedChat } = props;
+  const selected = selectedChatId === id;
+
+  return (
+    <React.Fragment>
+      <ListItem>
+        <ListItemButton
+          onClick={() => {
+            toggleMessagesPane();
+            setSelectedChat({ id, sender, messages });
+          }}
+          selected={selected}
+          sx={{
+            flexDirection: 'column',
+            alignItems: 'initial',
+            gap: 1,
+            bgcolor: selected ? 'action.selected' : 'background.paper',
+          }}
+        >
+          <Stack direction="row" spacing={1.5}>
+            <AvatarWithStatus online={sender.online} src={sender.avatar} />
+            <Box sx={{ flex: 1 }}>
+              <Typography variant="subtitle1">{sender.name}</Typography>
+              <Typography variant="body2">{sender.username}</Typography>
+            </Box>
+            <Box
+              sx={{
+                lineHeight: 1.5,
+                textAlign: 'right',
+              }}
+            >
+              {messages[0].unread && (
+                <CircleIcon sx={{ fontSize: 12 }} color="primary" />
+              )}
+              <Typography
+                variant="caption"
+                display={{ xs: 'none', md: 'block' }}
+                noWrap
+              >
+                5 mins ago
+              </Typography>
+            </Box>
+          </Stack>
+          <Typography
+            variant="body2"
+            sx={{
+              display: '-webkit-box',
+              WebkitLineClamp: '2',
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {messages[0].content}
+          </Typography>
+        </ListItemButton>
+      </ListItem>
+      <Divider sx={{ margin: 0 }} />
+    </React.Fragment>
+  );
+}
+
+export default ChatListItem;

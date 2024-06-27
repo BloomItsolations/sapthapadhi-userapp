@@ -13,11 +13,13 @@ import Avatar from '@mui/material/Avatar';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MatchesIcon from '@mui/icons-material/Favorite';
 import ChatIcon from '@mui/icons-material/Chat';
+import PersonIcon from '@mui/icons-material/Person';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
-const Navbar = () => {
+
+const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
     let location = useLocation().pathname;
     let isMyprofilePage = location.includes('/myprofile') || location.includes('/matches') || location.includes('/editprofile') || location.includes('/editpreferences') || location.includes('/chatlist') || location.includes('/profile');
-    console.log("location", location);
     useEffect(() => {
         let response = localStorage.getItem('userdata');
         console.log("response", response);
@@ -49,119 +51,181 @@ const Navbar = () => {
 
     return (
         <AppBar position="static" sx={{ backgroundColor: 'white', color: 'black', paddingInline: { xs: '0px', md: '70px' }, paddingBlock: { xs: '0px', md: '8px' } }}>
-            <Toolbar>
-                <Box component={Link} to="/" sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, gap: '5px' }}>
-                    <img src={"/images/comlogo.png"} alt="Company" className='h-[40px] w-[40px] md:h-[60px] md:w-[60px] lg:h-[50px] lg:w-[50px] rounded-md' />
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{
-                            fontSize: { xs: '15px', md: '24px', lg: '24px' },
-                            fontFamily: "'Montserrat', 'Roboto', 'Helvetica', 'Arial', sans-serif",
-                            textShadow: '0px 4px 4px 0px #00000040'
-                        }}
-                    >
-                        Sapthapadhi.in
-                    </Typography>
-            </Box>
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', justifyContent: 'center' }}>
-                {isLoggedIn ? (
-                    <>
-                        {
-                            isMyprofilePage && (
-                                <>
-                                    <Box component={Link} to="/matches" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit', marginRight: '15px' }}>
-                                        <MatchesIcon sx={{ marginRight: '5px' }} />
-                                        <Typography variant="body1">Matches</Typography>
-                                    </Box>
-                                    <Box component={Link} to="/chatlist" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
-                                        <ChatIcon sx={{ marginRight: '5px' }} />
-                                        <Typography variant="body1">Chat</Typography>
-                                    </Box>
-                                </>
-                            )
-                        }
-                        <IconButton color="inherit" component={Link} to="/myprofile" sx={{ marginLeft: '15px' }}>
-                            <Avatar>
-                                <AccountCircleIcon />
-                            </Avatar>
-                        </IconButton>
-                    </>
-                ) : (
-                    <>
-                        <Button
-                            color="inherit"
-                            component={Link}
-                            to="/login"
-                            sx={{ backgroundColor: '#18719b;', color: 'white;', '&:hover': { backgroundColor: '#0e4d6b' } }}
+            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                    {
+                        isMyprofilePage ? <Toolbar>
+                            <IconButton
+                                color="inherit"
+                                aria-label="open drawer"
+                                edge="start"
+                                onClick={() => setSidebarOpen(!sidebarOpen)}
+                                sx={{ mr: 2 }}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        </Toolbar> : <Box component={Link} to="/" sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, gap: '5px' }}>
+                            <img src={"/images/comlogo.png"} alt="Company" className='h-[40px] w-[40px] md:h-[60px] md:w-[60px] lg:h-[50px] lg:w-[50px] rounded-md' />
+                            <Typography
+                                variant="h6"
+                                component="div"
+                                sx={{
+                                    fontSize: { xs: '15px', md: '24px', lg: '24px' },
+                                    fontFamily: "'Montserrat', 'Roboto', 'Helvetica', 'Arial', sans-serif",
+                                    textShadow: '0px 4px 4px 0px #00000040'
+                                }}
+                            >
+                                Sapthapadhi.in
+                            </Typography>
+                        </Box>
+                    }
+                </Box>
+                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box component={Link} to="/" sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, gap: '5px' }}>
+                        <img src={"/images/comlogo.png"} alt="Company" className='h-[40px] w-[40px] md:h-[60px] md:w-[60px] lg:h-[50px] lg:w-[50px] rounded-md' />
+                        <Typography
+                            variant="h6"
+                            component="div"
+                            sx={{
+                                fontSize: { xs: '15px', md: '24px', lg: '24px' },
+                                fontFamily: "'Montserrat', 'Roboto', 'Helvetica', 'Arial', sans-serif",
+                                textShadow: '0px 4px 4px 0px #00000040'
+                            }}
                         >
-                            Login
-                        </Button>
-                        <Button
-                            color="inherit"
-                            component={Link}
-                            to="/register"
-                            sx={{ backgroundColor: '#18719b;', color: 'white;', marginLeft: '20px;', '&:hover': { backgroundColor: '#0e4d6b' } }}
-                        >
-                            Register
-                        </Button></>
-                )}
-                <Button
-                    color="inherit"
-                    aria-controls="more-menu"
-                    aria-haspopup="true"
-                    onClick={(e) => setAnchorEl(e.currentTarget)}
-                >
-                    More
-                </Button>
-                <Menu
-                    id="more-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleMenuClose}
-                >
-                    <MenuItem component={Link} to="/aboutus">About Us</MenuItem>
-                    <MenuItem component={Link} to="/ourgallery">Our Gallery</MenuItem>
-                    <MenuItem component={Link} to="/ourservice">Our Service</MenuItem>
-                    <MenuItem component={Link} to="/inquary">Inquary</MenuItem>
-                    <MenuItem component={Link} to="/priceplan">My Plans</MenuItem>
-                </Menu>
-            </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={handleMobileMenuOpen}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Menu
-                    anchorEl={mobileAnchorEl}
-                    open={Boolean(mobileAnchorEl)}
-                    onClose={handleMenuClose}
-                >
+                            Sapthapadhi.in
+                        </Typography>
+                    </Box>
+                </Box>
+
+                <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', justifyContent: 'center' }}>
                     {isLoggedIn ? (
                         <>
-                            <MenuItem component={Link} to="/myprofile">Profile</MenuItem>
-                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            {
+                                isMyprofilePage && (
+                                    <>
+                                        <Box component={Link} to="/matches" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit', marginRight: '15px' }}>
+                                            <MatchesIcon sx={{ marginRight: '5px' }} />
+                                            <Typography variant="body1">Matches</Typography>
+                                        </Box>
+                                        <Box component={Link} to="/chatlist" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                                            <ChatIcon sx={{ marginRight: '5px' }} />
+                                            <Typography variant="body1">Chat</Typography>
+                                        </Box>
+                                    </>
+                                )
+                            }
+                            <IconButton color="inherit" component={Link} to="/myprofile" sx={{ marginLeft: '15px' }}>
+                                <Avatar>
+                                    <AccountCircleIcon />
+                                </Avatar>
+                            </IconButton>
                         </>
                     ) : (
                         <>
-                            <MenuItem onClick={handleLogin}>Login</MenuItem>
-                            <MenuItem component={Link} to="/register">Register</MenuItem>
-                        </>
+                            <Button
+                                color="inherit"
+                                component={Link}
+                                to="/login"
+                                sx={{ backgroundColor: '#18719b;', color: 'white;', '&:hover': { backgroundColor: '#0e4d6b' } }}
+                            >
+                                Login
+                            </Button>
+                            <Button
+                                color="inherit"
+                                component={Link}
+                                to="/register"
+                                sx={{ backgroundColor: '#18719b;', color: 'white;', marginLeft: '20px;', '&:hover': { backgroundColor: '#0e4d6b' } }}
+                            >
+                                Register
+                            </Button></>
                     )}
-                    <MenuItem component={Link} to="/matches">Matches</MenuItem>
-                    <MenuItem component={Link} to="/chat">Chat</MenuItem>
-                    <MenuItem component={Link} to="/page1">Page 1</MenuItem>
-                    <MenuItem component={Link} to="/page2">Page 2</MenuItem>
-                    <MenuItem component={Link} to="/page3">Page 3</MenuItem>
-                </Menu>
-            </Box>
-        </Toolbar>
+                    <Button
+                        color="inherit"
+                        aria-controls="more-menu"
+                        aria-haspopup="true"
+                        onClick={(e) => setAnchorEl(e.currentTarget)}
+                    >
+                        More
+                    </Button>
+                    <Menu
+                        id="more-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleMenuClose}
+                    >
+                        <MenuItem component={Link} to="/aboutus">About Us</MenuItem>
+                        <MenuItem component={Link} to="/ourgallery">Our Gallery</MenuItem>
+                        <MenuItem component={Link} to="/ourservice">Our Service</MenuItem>
+                        <MenuItem component={Link} to="/inquary">Inquary</MenuItem>
+                        <MenuItem component={Link} to="/priceplan">My Plans</MenuItem>
+                    </Menu>
+                </Box>
+                {/* {
+                    isMyprofilePage && <Box sx={{marginLeft:'50%'}}><NotificationsIcon/></Box>
+                } */}
+
+                {
+                    isMyprofilePage && <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            onClick={handleMobileMenuOpen}
+                        >
+                            <PersonIcon />
+                        </IconButton>
+                        <Menu
+                            anchorEl={mobileAnchorEl}
+                            open={Boolean(mobileAnchorEl)}
+                            onClose={handleMenuClose}
+                        >
+                            {isLoggedIn ? (
+                                <>
+                                    <MenuItem component={Link} to="/myprofile">Profile</MenuItem>
+                                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                </>
+                            ) : (
+                                <>
+                                    <MenuItem component={Link} to="/login">Login</MenuItem>
+                                    <MenuItem component={Link} to="/register">Register</MenuItem>
+                                </>
+                            )}
+                            <MenuItem component={Link} to="/">Home</MenuItem>
+
+                        </Menu>
+                    </Box>
+                }
+
+                {
+                    !isMyprofilePage && <Box  sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <Button
+                            color="inherit"
+                            aria-controls="more-menu"
+                            aria-haspopup="true"
+                            onClick={(e) => setAnchorEl(e.currentTarget)}
+                        >
+                            More
+                        </Button>
+                        <Menu
+                            id="more-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleMenuClose}
+                        >
+                            <MenuItem component={Link} to="/aboutus">About Us</MenuItem>
+                            <MenuItem component={Link} to="/ourgallery">Our Gallery</MenuItem>
+                            <MenuItem component={Link} to="/ourservice">Our Service</MenuItem>
+                            <MenuItem component={Link} to="/inquary">Inquary</MenuItem>
+                            <MenuItem component={Link} to="/priceplan">My Plans</MenuItem>
+                        </Menu>
+                    </Box>
+                }
+
+            </Toolbar>
+
         </AppBar >
     );
 };

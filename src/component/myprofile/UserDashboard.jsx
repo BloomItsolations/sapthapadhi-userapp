@@ -133,8 +133,8 @@ const UserDashboard = () => {
 
         {/* Total matches section */}
         <Box sx={{ paddingInline: '5px', paddingBlock: '5px' }}>
-          <Typography sx={{ marginLeft: { xs: '0px', md: '14px' }, width: { xs: 'auto', sm: '300px', md: '526px' }, fontSize: { xs: '25px', md: "28px" }, marginTop: '20px' }} variant="h4" component="div">Total Matches</Typography>
-          <p className='text-black font-sans text-[20px] font-normal ml-5'>Members who match your partner preferences</p>
+          <Typography sx={{ marginLeft: { xs: '0px', md: '14px' }, width: { xs: 'auto', sm: '300px', md: '526px' }, fontSize: { xs: '20px', md: "28px" }, marginTop: '20px' }} variant="h4" component="div">Total Matches</Typography>
+          <p className='text-black font-sans text-[15px]  lg:text-[20px] font-normal ml-5'>Members who match your partner preferences</p>
           <Box sx={{ maxWidth: { xs: '95%', md: '95%' }, marginTop: '10px', overflow: 'hidden', padding: '20px', marginInline: 'auto' }}>
             <Slider {...settings}>
               {matches.map(match => (
