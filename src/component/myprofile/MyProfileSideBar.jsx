@@ -16,8 +16,9 @@ const MyProfileSideBar = ({ userData, setSidebarOpen, sidebarOpen }) => {
 
     const handleLogout = () => {
         localStorage.removeItem('userdata');
-        navigate('/')
-    };
+        navigate('/');
+        window.location.reload();
+      };
 
     return (
         <>

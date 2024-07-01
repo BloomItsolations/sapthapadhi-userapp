@@ -9,7 +9,6 @@ const LoginPage = () => {
     const [passwrod, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    console.log("env", process.env.REACT_APP_BaseURL);
     let handleSubmit = async () => {
         try {
             setIsLoading(true);
@@ -28,12 +27,14 @@ const LoginPage = () => {
                 console.log(response.data.userDetails)
                 localStorage.setItem("userdata", JSON.stringify(response.data.userDetails));
                 swal('Congratulation', response.data.message, 'success')
-                navigate('/myprofile')
+                navigate('/priceplan')
             }
         }
         catch (error) {
             if (error.response) {
-                swal(error.response.data.message, error.response.data.message, "error");
+                const errorData = error.response.data;
+                const errorMessage = errorData.match(/Error: (.*?)<br>/)[1];    
+                swal("Sorry! ",errorMessage, "error");
             }
             else {
                 swal("Sorry!", error.message, "error");
